@@ -1,0 +1,33 @@
+<!ENTITY sudoku.label "Your localized menuitem">
+<!ENTITY sudokuToolbar.label "Your Toolbar Button">
+<!ENTITY sudokuToolbar.tooltip "This is your toolbar button!">
+<!ENTITY next.tip "Další tip">
+<!ENTITY initial.tip "Po stisknutí Ctrl+Shift+S se zobrazí SUDOKU sidebar.">
+<!ENTITY openGridSidebar.commandkey "S">
+<!ENTITY openGridSidebar.modifierskey "shift accel">
+<!ENTITY gridsidebar.title "SUDOKU">
+<!ENTITY gridsidebar.title "Zobrazí/skryje postraní lištu SUDOKU">
+<!ENTITY gridsidebar.besttime "Nejlepší">
+<!ENTITY gridsidebar.play "Hrát">
+<!ENTITY gridsidebar.unrated "Nehodnocené">
+<!ENTITY gridsidebar.easy "Lehké">
+<!ENTITY gridsidebar.medium "Střední">
+<!ENTITY gridsidebar.hard "Těžké">
+<!ENTITY gridsidebar.view "Zobrazit">
+<!ENTITY gridsidebar.new.medium "Nové střední SUDOKU">
+<!ENTITY gridsidebar.new.hard "Nové těžké SUDOKU">
+<!ENTITY gridsidebar.new "Nové SUDOKU">
+<!ENTITY gridsidebar.timer "Čas:">
+<!ENTITY gridsidebar.difficulty "Obtížnost:">
+<!ENTITY play.btn "Hrát!">
+
+<!ENTITY options "Předvolby Sudoku">
+<!ENTITY options.main "Hlavní">
+<!ENTITY options.display "Zobrazení">
+<!ENTITY options.hinttips "Zobrazit tooltipy s možnostmi">
+<!ENTITY options.hlcross "Zvýraznit řádek a sloupec pod kurzorem">
+<!ENTITY options.hlerrors "Zvýraznit chybně umístěná čísla">
+<!ENTITY options.input "Možnosti ovládání">
+<!ENTITY options.engine "Hlavní nastavení">
+<!ENTITY options.allowhard "Povolit těžká">
+

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!-- ***** BEGIN LICENSE BLOCK *****
+  -   Version: MPL 1.1/GPL 2.0/LGPL 2.1
+  -
+  - The contents of this file are subject to the Mozilla Public License Version
+  - 1.1 (the "License"); you may not use this file except in compliance with
+  - the License. You may obtain a copy of the License at
+  - http://www.mozilla.org/MPL/
+  - 
+  - Software distributed under the License is distributed on an "AS IS" basis,
+  - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  - for the specific language governing rights and limitations under the
+  - License.
+  -
+  - The Original Code is sudoku.
+  -
+  - The Initial Developer of the Original Code is
+  - Petr Blahoš.
+  - Portions created by the Initial Developer are Copyright (C) 2008
+  - the Initial Developer. All Rights Reserved.
+  -
+  - Contributor(s):
+  -
+  - Alternatively, the contents of this file may be used under the terms of
+  - either the GNU General Public License Version 2 or later (the "GPL"), or
+  - the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+  - in which case the provisions of the GPL or the LGPL are applicable instead
+  - of those above. If you wish to allow use of your version of this file only
+  - under the terms of either the GPL or the LGPL, and not to allow others to
+  - use your version of this file under the terms of the MPL, indicate your
+  - decision by deleting the provisions above and replace them with the notice
+  - and other provisions required by the GPL or the LGPL. If you do not delete
+  - the provisions above, a recipient may use your version of this file under
+  - the terms of any one of the MPL, the GPL or the LGPL.
+  - 
+  - ***** END LICENSE BLOCK ***** -->
+<?xml-stylesheet href="chrome://global/skin/" type"text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://sudoku/skin/gridsidebar.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://sudoku/locale/sudoku.dtd">
+
+<page id="sbGridSidebar" title="&gridsidebar.title;"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	 onload="gridsb.init()"
+	 onunload="gridsb.unload()"
+	 >
+
+    <stringbundleset id="stringbundleset">
+	<stringbundle id="main-strings" src="chrome://sudoku/locale/sudoku.properties"/>
+    </stringbundleset>
+
+    <popupset>
+	<tooltip id="gridtip" orient="vertical" onpopupshowing="return gridsb.tip_showing(event);">
+	  <hbox><label value="&gridsidebar.timer;"/><label id="tm"/></hbox>
+	  <hbox><label value="&gridsidebar.difficulty;"/><label id="difficulty"/></hbox>
+	  <grid>
+	    <columns>
+	      <column/><column/><column class="hlrt"/>
+	      <column class="hllt"/><column/><column class="hlrt"/>
+	      <column class="hllt"/><column/><column/>
+	    </columns>
+	    <rows>
+	      <row><label id="g0"/><label id="g1"/><label id="g2"/><label id="g3"/><label id="g4"/><label id="g5"/><label id="g6"/><label id="g7"/><label id="g8"/></row>
+	      <row><label id="g9"/><label id="g10"/><label id="g11"/><label id="g12"/><label id="g13"/><label id="g14"/><label id="g15"/><label id="g16"/><label id="g17"/></row>
+	      <row class="hlbot"><label id="g18"/><label id="g19"/><label id="g20"/><label id="g21"/><label id="g22"/><label id="g23"/><label id="g24"/><label id="g25"/><label id="g26"/></row>
+	      <row class="hltop"><label id="g27"/><label id="g28"/><label id="g29"/><label id="g30"/><label id="g31"/><label id="g32"/><label id="g33"/><label id="g34"/><label id="g35"/></row>
+	      <row><label id="g36"/><label id="g37"/><label id="g38"/><label id="g39"/><label id="g40"/><label id="g41"/><label id="g42"/><label id="g43"/><label id="g44"/></row>
+	      <row class="hlbot"><label id="g45"/><label id="g46"/><label id="g47"/><label id="g48"/><label id="g49"/><label id="g50"/><label id="g51"/><label id="g52"/><label id="g53"/></row>
+	      <row class="hltop"><label id="g54"/><label id="g55"/><label id="g56"/><label id="g57"/><label id="g58"/><label id="g59"/><label id="g60"/><label id="g61"/><label id="g62"/></row>
+	      <row><label id="g63"/><label id="g64"/><label id="g65"/><label id="g66"/><label id="g67"/><label id="g68"/><label id="g69"/><label id="g70"/><label id="g71"/></row>
+	      <row><label id="g72"/><label id="g73"/><label id="g74"/><label id="g75"/><label id="g76"/><label id="g77"/><label id="g78"/><label id="g79"/><label id="g80"/></row>
+	    </rows>
+	  </grid>
+	</tooltip>
+    </popupset>
+
+    <richlistbox id="saved" flex="1">
+    </richlistbox>
+
+    <button label="&gridsidebar.new;" onclick="gridsb.random(event, 0)"/>
+    <button label="&options;" oncommand="window.openDialog('chrome://sudoku/content/options.xul', '', 'chrome,titlebar,toolbar,centerscreen,modal', []).focus()"/>
+
+    <script type="application/x-javascript" src="chrome://sudoku/content/tools.js"/>
+    <script type="application/x-javascript" src="chrome://sudoku/content/gridsidebar.js"/>
+</page>
+

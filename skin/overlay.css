@@ -1,0 +1,16 @@
+/* This is just an example.  You shouldn't do this. */
+#sudoku-hello
+{
+  color: red ! important;
+}
+#sudoku-toolbar-button
+{
+  list-style-image: url("chrome://sudoku/skin/main-mid.png");
+  -moz-box-orient: vertical;
+}
+[iconsize="small"] #sudoku-toolbar-button
+{
+  list-style-image: url("chrome://sudoku/skin/main-small.png");
+  -moz-box-orient: vertical;
+}
+

@@ -1,0 +1,33 @@
+grid {
+	border: solid 2px blue; 
+}
+row {
+	border: solid 1px black;
+	height: 22px;
+}
+.hlrt {
+	border-right: solid 2px blue;
+}
+.hllt {
+	border-left: solid 1px blue;
+}
+.hltop {
+	border-top: solid 1px blue;
+}
+.hlbot {
+	border-bottom: solid 2px blue;
+}
+column {
+	border: solid 1px black;
+	width: 22px;
+}
+.clickable:hover {
+	border-bottom: solid 1px black;
+}
+row label {
+	font-weight: bold;
+}
+.givens {
+	color: blue;
+}
+

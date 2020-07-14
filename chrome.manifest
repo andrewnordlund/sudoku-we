@@ -1,0 +1,7 @@
+content	sudoku	content/
+resource sudoku modules/
+locale	sudoku	en-US	locale/en-US/
+locale	sudoku	cs-CZ	locale/cs-CZ/
+skin	sudoku	classic/1.0	skin/
+overlay	chrome://browser/content/browser.xul	chrome://sudoku/content/firefoxOverlay.xul
+style	chrome://global/content/customizeToolbar.xul	chrome://sudoku/skin/overlay.css

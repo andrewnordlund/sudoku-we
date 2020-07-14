@@ -1,0 +1,227 @@
+/* ***** BEGIN LICENSE BLOCK *****
+ *   Version: MPL 1.1/GPL 2.0/LGPL 2.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ * 
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is sudoku.
+ *
+ * The Initial Developer of the Original Code is
+ * Petr Blahoš.
+ * Portions created by the Initial Developer are Copyright (C) 2008
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *
+ * Alternatively, the contents of this file may be used under the terms of
+ * either the GNU General Public License Version 2 or later (the "GPL"), or
+ * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+ * in which case the provisions of the GPL or the LGPL are applicable instead
+ * of those above. If you wish to allow use of your version of this file only
+ * under the terms of either the GPL or the LGPL, and not to allow others to
+ * use your version of this file under the terms of the MPL, indicate your
+ * decision by deleting the provisions above and replace them with the notice
+ * and other provisions required by the GPL or the LGPL. If you do not delete
+ * the provisions above, a recipient may use your version of this file under
+ * the terms of any one of the MPL, the GPL or the LGPL.
+ * 
+ * ***** END LICENSE BLOCK ***** */
+
+/***** MAIN LAYOUT *****/
+body {
+	margin: 0;
+	padding: 0;
+	font-family: serif;
+}
+.left {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 460px;
+}
+.right {
+	position: absolute;
+	left: 460px;
+	top: 10px;
+}
+.menu {
+	float: right;
+	margin: 10px;
+}
+/***** THE GRID *****/
+table.g {
+	background-color: white;
+	border: solid 5px #009999;
+	border-collapse: collapse;
+	border-spacing: 1px 1px;
+	table-layout: fixed;
+}
+.g tr {
+	padding: 0px;
+	border: none
+}
+.hv tr:hover {
+	background: #E0FFFF;
+}
+.g td {
+	border: none;
+	background: #80FFFF;
+	width: 1px;
+	height: 1px;
+}
+.g th {
+	border: 2px solid #009999;
+	font-weight: bold;
+	font-size: 110%;
+}
+div.hn {	/* hint	*/
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 11px;
+	text-align: left;
+}
+div.mn {	/* main number */
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+	font-size: 35px;
+}
+div.cb {	/* container for main and hint */
+	position: relative;
+	width: 40px;
+	height: 40px;
+}
+div.hard {	/* grayed-out */
+	background: #D3D3D3;
+	color: #2F4F4F;
+}
+div.selmark {	/* currently selected number */
+	background: #CC0;
+}
+/***** OTHERS *****/
+.numbers td {	/* the numbers "menu" */
+	height: 60px;
+	width: 30px;
+	text-align: center;
+	font-size: 20px;
+	border: solid 3px black;
+}
+
+.nbg0 { background-image: url('../skin/nbg0.png'); }
+.nbg1 { background-image: url('../skin/nbg1.png'); }
+.nbg2 { background-image: url('../skin/nbg2.png'); }
+.nbg3 { background-image: url('../skin/nbg3.png'); }
+.nbg4 { background-image: url('../skin/nbg4.png'); }
+.nbg5 { background-image: url('../skin/nbg5.png'); }
+.nbg6 { background-image: url('../skin/nbg6.png'); }
+.nbg7 { background-image: url('../skin/nbg7.png'); }
+.nbg8 { background-image: url('../skin/nbg8.png'); }
+.nbg9 { background-image: url('../skin/nbg9.png'); }
+.nbg10 { background-image: url('../skin/nbg_red.png'); }
+
+td.usedup {	/* the number has been used up - placed 9 times or more */
+	opacity: 0.3;
+}
+td.selmark {	/* currently selected number */
+	font-size: 42px;
+	background-color: #CC0;
+}
+table.info {
+	font-size: 20px;
+} 
+::-moz-selection { background: none; }
+::selection { background: none; }
+/***** COLUMN AND SQUARE HILIGHTING *****/
+.c0 { }
+.c1 { }
+.c2 { }
+.c3 { }
+.c4 { }
+.c5 { }
+.c6 { }
+.c7 { }
+.c8 { }
+.c9 { }
+.q00 { }
+.q01 { }
+.q02 { }
+.q10 { }
+.q11 { }
+.q12 { }
+.q20 { }
+.q21 { }
+.q22 { }
+
+div.completed {
+	position: fixed;
+	top: 13px;
+	left: 13px;
+	width: 408px;
+	height: 255px;
+	z-index: 3;
+	visibility: hidden;
+	background-color: #80FFFF;
+	color: black;
+	opacity: 0.85;
+	padding-top: 150px;
+	text-align: center;
+	font-size: 40px;
+}
+div.tip {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	height: 4em;
+	display: table;
+}
+div#tip {
+	display: table-cell;
+	padding-left: 2em;
+	padding-right: 2em;
+	vertical-align: middle;
+	background-color: #CFF;
+	color: black;
+}
+div#tiptoggle {
+	width: 10px;
+	background-color: #366;
+	display: table-cell;
+}
+.hint1 {
+	position: absolute;
+	z-index: 5;
+	background-color: #FF8;
+	border: 1px solid black;
+	padding: 0.3em;
+	font-size: 20px;
+	overflow: visible;
+	visibility: hidden;
+	font-family: sans-serif;
+	left: 2em;
+	top: 2em;
+}
+#rowhint {
+	top: 0;
+	height: 30px;
+}
+#colhint {
+	left: 0;
+	width: 30px;
+}
+#sqhint {
+	width: 3em;
+}
+

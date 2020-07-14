@@ -1,0 +1,32 @@
+<!ENTITY sudoku.label "Your localized menuitem">
+<!ENTITY sudokuToolbar.label "Your Toolbar Button">
+<!ENTITY sudokuToolbar.tooltip "This is your toolbar button!">
+<!ENTITY next.tip "Next Tip">
+<!ENTITY initial.tip "Press Ctrl+Shift+S for SUDOKU sidebar.">
+<!ENTITY openGridSidebar.commandkey "S">
+<!ENTITY openGridSidebar.modifierskey "shift accel">
+<!ENTITY gridsidebar.title "SUDOKU">
+<!ENTITY gridsidebar.toggle.tooltip "Toggle SUDOKU sidebar">
+<!ENTITY gridsidebar.besttime "Best">
+<!ENTITY gridsidebar.play "Play">
+<!ENTITY gridsidebar.unrated "Not Rated">
+<!ENTITY gridsidebar.easy "Easy">
+<!ENTITY gridsidebar.medium "Medium">
+<!ENTITY gridsidebar.hard "Hard">
+<!ENTITY gridsidebar.view "View">
+<!ENTITY gridsidebar.new.medium "New Medium Puzzle">
+<!ENTITY gridsidebar.new.hard "New Hard Puzzle">
+<!ENTITY gridsidebar.new "New Puzzle">
+<!ENTITY gridsidebar.timer "Timer:">
+<!ENTITY gridsidebar.difficulty "Difficulty:">
+<!ENTITY play.btn "Play!">
+
+<!ENTITY options "Sudoku Options">
+<!ENTITY options.main "Main">
+<!ENTITY options.display "Display Options">
+<!ENTITY options.hinttips "Show tooltips with hints">
+<!ENTITY options.hlcross "Highlight the row and column under the mouse cursor">
+<!ENTITY options.hlerrors "Highlight wrongly placed numbers">
+<!ENTITY options.input "Input Options">
+<!ENTITY options.engine "Main settings">
+<!ENTITY options.allowhard "Allow Hard">
