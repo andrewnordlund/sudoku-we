@@ -15,10 +15,17 @@
 			"strict_min_version": "45.0"
 		}
 	},
-	
+	"sidebar_action": {
+		"default_icon": {
+			"16": "skins/main-small.png",
+	 		"32": "skins/main-mid.png"
+		},
+		"default_title": "Sudoku",
+		"default_panel": "content/sidebar.html",
+		"open_at_install":false
+	},
 	"permissions": [
 		"tabs",
-		"<all_urls>",
 		"storage"
 	],
 	"browser_action": {
