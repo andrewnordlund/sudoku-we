@@ -5,20 +5,20 @@
 	"version": "0.0.1-a1",
 	
 	"icons": {
-		"48": "skins/main-mid.png",
-		"96": "skins/main-big.png"
+		"48": "skin/main-mid.png",
+		"96": "skin/main-big.png"
 	},
 	
 	"applications": {
 		"gecko": {
-			"id": "nordEHHelper@nordburg.ca",
+			"id": "nordSudoku@nordburg.ca",
 			"strict_min_version": "45.0"
 		}
 	},
 	"sidebar_action": {
 		"default_icon": {
-			"16": "skins/main-small.png",
-	 		"32": "skins/main-mid.png"
+			"16": "skin/main-small.png",
+	 		"32": "skin/main-mid.png"
 		},
 		"default_title": "Sudoku",
 		"default_panel": "content/sidebar.html",
@@ -29,9 +29,10 @@
 		"storage"
 	],
 	"browser_action": {
+		"browser_style": false,
 		"default_icon": {
-			"19": "skins/main-small.png",
-			"38": "skins/main-mid.png"
+			"19": "skin/main-small.png",
+			"38": "skin/main-mid.png"
 		},
 		"default_title": "Sudoku"
 	},
