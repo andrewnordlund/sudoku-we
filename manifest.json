@@ -3,31 +3,23 @@
 	"name": "Sudoku",
 	"description": "An in-browser sudoku game.",
 	"version": "0.0.1-a1",
-	
 	"icons": {
 		"48": "skin/main-mid.png",
 		"96": "skin/main-big.png"
 	},
-	
 	"applications": {
 		"gecko": {
 			"id": "nordSudoku@nordburg.ca",
 			"strict_min_version": "45.0"
 		}
 	},
-	"sidebar_action": {
-		"default_icon": {
-			"16": "skin/main-small.png",
-	 		"32": "skin/main-mid.png"
-		},
-		"default_title": "Sudoku",
-		"default_panel": "content/sidebar.html",
-		"open_at_install":false
-	},
 	"permissions": [
 		"tabs",
 		"storage"
 	],
+	"background": {
+		"scripts": ["sudoku-bg.js"]
+	},
 	"browser_action": {
 		"browser_style": false,
 		"default_icon": {
@@ -35,9 +27,6 @@
 			"38": "skin/main-mid.png"
 		},
 		"default_title": "Sudoku"
-	},
-	"background": {
-		"scripts": []
-	},
+	},	
 	"web_accessible_resources" : ["libs/*","libs/styles/*"]
 }
