@@ -344,14 +344,14 @@ gridder = {
 		gridder.doc.getElementById('restart').addEventListener("click", function() {gridder.restart();}, false);
 
 		gridder.doc.getElementById('completed').addEventListener("click", function() {gridder.generate();}, false);
-		if (gridder.doc!=document) {
+		if (gridder.doc!=document) {	// Uhhhhh, should this ever happen?
 			gridder.doc.getElementById('pressed_key').addEventListener("DOMAttrModified", 
 				function(ev) {
 					// the trouble is that if we press a key 3, then click on 1,
 					// then press key 3 again it won't work because the attribute 
 					// really didn't change. We must "reset" the attribute.
 					var v = 1*ev.newValue;
-					if (16!=v) {
+					if (v != 16) {
 						gridder.key(1*ev.newValue);
 						gridder.doc.getElementById('pressed_key').value = 16;
 					}
@@ -457,14 +457,10 @@ gridder = {
 	cell_enter: function(ev) {
 		var row = this.id.charCodeAt(0) - 48;
 		var col = this.id.charCodeAt(1) - 48;
-		if (-1!=gridder.hl_col && gridder.hl_col!=col) {
+		if (gridder.hl_col != -1 && gridder.hl_col != col) {
 			gridder.hilight_column(gridder.hl_col, 0);
 		}
-		if (-1!=gridder.hl_col
-		    && Math.floor(gridder.hl_col/3)!=Math.floor(col/3) 
-		    && -1!=gridder.hl_row 
-		    && Math.floor(gridder.hl_row/3)!=Math.floor(row/3)
-		) {
+		if (gridder.hl_col != -1 && Math.floor(gridder.hl_col/3) != Math.floor(col/3) && gridder.hl_row != -1 && Math.floor(gridder.hl_row/3) != Math.floor(row/3)) {
 			gridder.hilight_square(gridder.hl_col, gridder.hl_row, 0);
 		}
 		gridder.hilight_square(col, row, 1);
@@ -474,7 +470,7 @@ gridder = {
 		gridder.get_hl_tips();
 	}, // End of cell_enter
 	set_hint_string: function(l, sep, el, left, top) {
-		var hint = "";
+		var hint = ""
 		for(i = 1;i<10;i++) {
 			if(!l[i]) {
 				hint+= i + sep;
@@ -483,8 +479,8 @@ gridder = {
 		if (hint != "") {
 			el.innerHTML = hint;
 			el.style.visibility = "visible";
-			el.style.left = left;
-			el.style.top = top;
+			el.style.left = left + "px";
+			el.style.top = top + "px";
 		} else {
 			el.style.visibility = "hidden";
 		}
@@ -498,18 +494,18 @@ gridder = {
 		var col = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 		var sq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 		var hint;
-		for (i = 0;i<9;i++) {
+		for (i = 0; i < 9; i++) {
 			a = Math.abs(gridder.cache[gridder.hl_row][i]);
-			if (a)		row[a]++;
+			if (a) row[a]++;
 			a = Math.abs(gridder.cache[i][gridder.hl_col]);
-			if (a)		col[a]++;
+			if (a) col[a]++;
 		}
 		var rr = 3*Math.floor(gridder.hl_row/3);
 		var cc = 3*Math.floor(gridder.hl_col/3);
-		for (i = rr; i<rr+3;i++) {
-			for (j = cc;j<cc+3;j++) {
+		for (i = rr; i < rr + 3; i++) {
+			for (j = cc; j < cc + 3; j++) {
 				a = Math.abs(gridder.cache[i][j]);
-				if (a)	sq[a]++;
+				if (a) sq[a]++;
 			}
 		}
 		// FIXME: move these to init

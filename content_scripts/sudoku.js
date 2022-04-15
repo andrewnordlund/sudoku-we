@@ -14,6 +14,7 @@ sudokuCS = {
 	key_pressed : function (ev) {
 		document.getElementById("pressed_key").value = ""+ev.keyCode;
 		console.log ("pressed " + ev.keyCode);
+		gridder.key(ev.keyCode);
 	}
 }
 
