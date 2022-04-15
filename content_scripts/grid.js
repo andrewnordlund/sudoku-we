@@ -1,6 +1,5 @@
-
-var LOG = FF3SudokuTools.LOG;
-
+console.log ("Loading grid.js");
+dbug = true;
 function get_shuffled_range(from, to) {
 	/**
 	 * Creates an array with items <from, to) and shuffles it.
@@ -49,8 +48,8 @@ gridder = {
 		}
 	}, // End of key
 	set_num: function(n) {
-		var sp = gridder.doc.getElementById("s" + gridder.num);
-		if (-1!=sp.className.indexOf("usedup")) {
+		var sp = document.getElementById("s" + gridder.num); //gridder.doc.getElementById("s" + gridder.num);
+		if (sp.className.indexOf("usedup") != -1) {
 			sp.className = "usedup nbg9";
 		} else {
 			sp.className = "nbg" + gridder.counts[gridder.num];
@@ -101,7 +100,7 @@ gridder = {
 		for (var i = 0;i<spans.length;i++) {
 			try {
 				var el = spans[i];
-				if (0==el.id.indexOf("loc_")) {
+				if (el.id.indexOf("loc_") == 0) {
 					el.innerHTML = strings_bundle.GetStringFromName(el.id.substring(4));
 				}
 			} catch(e) {}
@@ -139,7 +138,7 @@ gridder = {
 		document.getElementById("grid").className = gridder.hl_cross ? "g hv" : "g";
 	}, // End of loadprefs
 	observe: function(subject, topic, data) {
-		LOG("observe:" + subject + "," + topic + "," + data + "<");
+		if (dbug) console.log("observe:" + subject + "," + topic + "," + data + "<");
 		if ("nsPref:changed"!=topic) {
 			return;
 		}
@@ -209,6 +208,7 @@ gridder = {
 		window.griddb.init();
 	}, // End of init_gears
 	init: function() {
+		if (dbug) console.log ("gidder::Initting!");
 		gridder.find_css();
 		gridder.cache = [
 			[ 0,0,0,0,0,0,0,0,0 ],
@@ -233,6 +233,7 @@ gridder = {
 		gridder.timer_on = 0;
 		gridder.timer = setInterval(gridder.watch, 1000);
 
+	      if (dbug) console.log ("gidder::Finished Initting!");
 		gridder.init_ui();
 	}, // End of init
 	restart: function() {
@@ -302,7 +303,7 @@ gridder = {
 				gridder.difficulty = -1;
 			}
 		}
-		LOG("gridder.difficulty:" + gridder.difficulty);
+		if (dbug) console.log("gridder.difficulty:" + gridder.difficulty);
 		var temp = "";
 		if (gridder.difficulty>0 && gridder.difficulty<=30) {
 			temp = gridder.strings.getString("gridsidebar.easy");
@@ -317,6 +318,7 @@ gridder = {
 
 	}, // End of start_grid
 	init_ui: function() {
+		if (dbug) console.log ("gidder::UI_Initting!");
 		var ts = gridder.doc.getElementsByTagName('th');
 		for (var i = 0;i<ts.length;i++) {
 			ts[i].addEventListener("mouseup", gridder.cell_click, false);
@@ -359,6 +361,7 @@ gridder = {
 		gridder.rowhint = gridder.doc.getElementById('rowhint')
 		gridder.colhint = gridder.doc.getElementById('colhint')
 		gridder.sqhint = gridder.doc.getElementById('sqhint')
+		if (dbug) console.log ("gidder::Finished UI_Initting!");
 	}, // End of init_ui
 	find_css: function() {
 		var r, i;
@@ -447,7 +450,7 @@ gridder = {
 		return ;
 		var c = Math.floor(column/3);
 		var r = Math.floor(row/3);
-		if (null!=gridder.sq_css_rules[c][r]) {
+		if (gridder.sq_css_rules[c][r] != null) {
 			gridder.sq_css_rules[c][r].style.background = hl ? "#E0FFFF" : "none";
 		}
 	}, // End of hilight_square
@@ -729,15 +732,15 @@ gridder = {
 	smart_save: function() {
 		var out = gridder.get_givens();
 		if (gridder.difficulty<0) {
-			LOG("Clearing unsolvable grid");
+			if (dbug) console.log("Clearing unsolvable grid");
 			griddb.clear_grid(out);
 			return;
 		}
 		if (!gridder.timer_on) {
-			LOG("Smartsave: not saving - finished");
+			if (dbug) console.log("Smartsave: not saving - finished");
 			return ;
 		}
-		LOG("Smartsave Gathering.");
+		if (dbug) console.log("Smartsave Gathering.");
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
 		griddb.save_grid(out, data);
 		gridder.notify_sidebar();
@@ -769,7 +772,7 @@ gridder = {
 		gridder.pop(1*this.id.substring(5));
 	}, // End of pop_mark
 	pop: function(i) {
-		LOG("POPPING: " + i);
+		if (dbug) console.log("POPPING: " + i);
 		var x = gridder.user_stack[i];
 
 		gridder.cache = [];
@@ -891,7 +894,7 @@ SOLVER.prototype = {
 		for (var i = 0;i<arguments.length;i++) {
 			out+= arguments[i] + " ";
 		}
-		LOG(out);
+		if (dbug) console.log(out);
 	}, // End of do_log
 	skip_log: function() {
 	}, // End of skip_log
@@ -1088,7 +1091,7 @@ SOLVER.prototype = {
 										if (this.hints[r][c][j] && this.hints[i][c][j]) {
 											removed+=1;
 											this.hints[i][c][j] = 0;
-											//this.LOG("-- naked pair C -- REMOVED", j, "from [", i, c, "] due to [", r, c, "]-[", sub, c, "]");
+											//this.if (dbug) console.log("-- naked pair C -- REMOVED", j, "from [", i, c, "] due to [", r, c, "]-[", sub, c, "]");
 										}
 									}
 								}
@@ -1104,7 +1107,7 @@ SOLVER.prototype = {
 										if (this.hints[r][c][j] && this.hints[r][i][j]) {
 											removed+= 1;
 											this.hints[r][i][j] = 0;
-											//this.LOG("-- naked pair R -- REMOVED", j, "from [", r, i, "] due to [", r, c, "]-[", r, sub, "]");
+											//this.if (dbug) console.log("-- naked pair R -- REMOVED", j, "from [", r, i, "] due to [", r, c, "]-[", r, sub, "]");
 										}
 									}
 								}
@@ -1128,7 +1131,7 @@ SOLVER.prototype = {
 													if (this.hints[r][c][j] && this.hints[rrrr][cccc][j]) {
 														removed+= 1;
 														this.hints[rrrr][cccc][j] = 0;
-														//this.LOG("-- naked pair SQ -- REMOVED", j, "from [", rrrr, cccc, "] due to [", r, c, "]-[", rrr, ccc, "] sq: ", rr, cc);
+														//this.if (dbug) console.log("-- naked pair SQ -- REMOVED", j, "from [", rrrr, cccc, "] due to [", r, c, "]-[", rrr, ccc, "] sq: ", rr, cc);
 													}
 												}
 											}
@@ -1179,7 +1182,7 @@ SOLVER.prototype = {
 							}
 							if (this.hints[pointingrow][c][j]) {
 								removed++;
-								//this.LOG("-- pointing ROW", pointingrow, "val:", j, "removed in col:", c);
+								//this.if (dbug) console.log("-- pointing ROW", pointingrow, "val:", j, "removed in col:", c);
 								this.hints[pointingrow][c][j] = 0;
 							}
 						}
@@ -1191,7 +1194,7 @@ SOLVER.prototype = {
 							}
 							if (this.hints[r][pointingcol][j]) {
 								removed++;
-								//this.LOG("-- pointing COL", pointingcol, "val:", j, "removed in row:", r);
+								//this.if (dbug) console.log("-- pointing COL", pointingcol, "val:", j, "removed in row:", r);
 								this.hints[r][pointingcol][j] = 0;
 							}
 						}
@@ -1550,4 +1553,4 @@ SOLVER.prototype = {
 	}, // End of dump
 	__sentinel: 0
 }; // End of SOLVER.prototype
-
+console.log ("Loaded grid.js");

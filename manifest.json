@@ -3,19 +3,23 @@
 	"name": "Sudoku",
 	"description": "An in-browser sudoku game.",
 	"version": "0.0.1-a1",
-	"icons": {
+	"icons" : {
 		"48": "skin/main-mid.png",
 		"96": "skin/main-big.png"
 	},
+	"homepage_url" : "https://www.nordburg.ca/ext/home.php",
 	"applications": {
 		"gecko": {
 			"id": "nordSudoku@nordburg.ca",
-			"strict_min_version": "45.0"
+			"strict_min_version": "45.0",
+			"update_url" : "https://www.nordburg.ca/ext/updates.php?extid=nordSudoku"
 		}
 	},
 	"permissions": [
+		"<all_urls>",
 		"tabs",
-		"storage"
+		"storage",
+		"cookies"
 	],
 	"background": {
 		"scripts": ["sudoku-bg.js"]
@@ -28,5 +32,5 @@
 		},
 		"default_title": "Sudoku"
 	},	
-	"web_accessible_resources" : ["libs/*","libs/styles/*"]
+	"web_accessible_resources" : ["content_scripts/*"]
 }
