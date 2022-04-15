@@ -12,575 +12,614 @@ function key_pressed(ev) {
 }
 </script>
 -->
-<body id="body"> <!--oncontextmenu="return false;" onkeyup="key_pressed(event)" -->
+<body id="body" oncontextmenu="return false;" onkeyup="key_pressed(event)">
 		<header>
 			<h1>Sudoku</h1>
 		</header>
 		<main>
-		<div>
-		<table class="g hv" id="grid">
-			<tr>
-				<th class="c0 q00" id="00">
-					<div class="cb" id="cb00">
-						<div class="mn" id="mn00"></div>
-						<div class="hn" id="hn00"></div>
-					</div>
-				</th>
-				<th class="c1 q00" id="01">
-					<div class="cb" id="cb01">
-						<div class="mn" id="mn01"></div>
-						<div class="hn" id="hn01"></div>
-					</div>
-				</th>
-				<th class="c2 q00" id="02">
-					<div class="cb" id="cb02">
-						<div class="mn" id="mn02"></div>
-						<div class="hn" id="hn02"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q01" id="03">
-					<div class="cb" id="cb03">
-						<div class="mn" id="mn03"></div>
-						<div class="hn" id="hn03"></div>
-					</div>
-				</th>
-				<th class="c4 q01" id="04">
-					<div class="cb" id="cb04">
-						<div class="mn" id="mn04"></div>
-						<div class="hn" id="hn04"></div>
-					</div>
-				</th>
-				<th class="c5 q01" id="05">
-					<div class="cb" id="cb05">
-						<div class="mn" id="mn05"></div>
-						<div class="hn" id="hn05"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q02" id="06">
-					<div class="cb" id="cb06">
-						<div class="mn" id="mn06"></div>
-						<div class="hn" id="hn06"></div>
-					</div>
-				</th>
-				<th class="c7 q02" id="07">
-					<div class="cb" id="cb07">
-						<div class="mn" id="mn07"></div>
-						<div class="hn" id="hn07"></div>
-					</div>
-				</th>
-				<th class="c8 q02" id="08">
-					<div class="cb" id="cb08">
-						<div class="mn" id="mn08"></div>
-						<div class="hn" id="hn08"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q00" id="10">
-					<div class="cb" id="cb10">
-						<div class="mn" id="mn10"></div>
-						<div class="hn" id="hn10"></div>
-					</div>
-				</th>
-				<th class="c1 q00" id="11">
-					<div class="cb" id="cb11">
-						<div class="mn" id="mn11"></div>
-						<div class="hn" id="hn11"></div>
-					</div>
-				</th>
-				<th class="c2 q00" id="12">
-					<div class="cb" id="cb12">
-						<div class="mn" id="mn12"></div>
-						<div class="hn" id="hn12"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q01" id="13">
-					<div class="cb" id="cb13">
-						<div class="mn" id="mn13"></div>
-						<div class="hn" id="hn13"></div>
-					</div>
-				</th>
-				<th class="c4 q01" id="14">
-					<div class="cb" id="cb14">
-						<div class="mn" id="mn14"></div>
-						<div class="hn" id="hn14"></div>
-					</div>
-				</th>
-				<th class="c5 q01" id="15">
-					<div class="cb" id="cb15">
-						<div class="mn" id="mn15"></div>
-						<div class="hn" id="hn15"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q02" id="16">
-					<div class="cb" id="cb16">
-						<div class="mn" id="mn16"></div>
-						<div class="hn" id="hn16"></div>
-					</div>
-				</th>
-				<th class="c7 q02" id="17">
-					<div class="cb" id="cb17">
-						<div class="mn" id="mn17"></div>
-						<div class="hn" id="hn17"></div>
-					</div>
-				</th>
-				<th class="c8 q02" id="18">
-					<div class="cb" id="cb18">
-						<div class="mn" id="mn18"></div>
-						<div class="hn" id="hn18"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q00" id="20">
-					<div class="cb" id="cb20">
-						<div class="mn" id="mn20"></div>
-						<div class="hn" id="hn20"></div>
-					</div>
-				</th>
-				<th class="c1 q00" id="21">
-					<div class="cb" id="cb21">
-						<div class="mn" id="mn21"></div>
-						<div class="hn" id="hn21"></div>
-					</div>
-				</th>
-				<th class="c2 q00" id="22">
-					<div class="cb" id="cb22">
-						<div class="mn" id="mn22"></div>
-						<div class="hn" id="hn22"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q01" id="23">
-					<div class="cb" id="cb23">
-						<div class="mn" id="mn23"></div>
-						<div class="hn" id="hn23"></div>
-					</div>
-				</th>
-				<th class="c4 q01" id="24">
-					<div class="cb" id="cb24">
-						<div class="mn" id="mn24"></div>
-						<div class="hn" id="hn24"></div>
-					</div>
-				</th>
-				<th class="c5 q01" id="25">
-					<div class="cb" id="cb25">
-						<div class="mn" id="mn25"></div>
-						<div class="hn" id="hn25"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q02" id="26">
-					<div class="cb" id="cb26">
-						<div class="mn" id="mn26"></div>
-						<div class="hn" id="hn26"></div>
-					</div>
-				</th>
-				<th class="c7 q02" id="27">
-					<div class="cb" id="cb27">
-						<div class="mn" id="mn27"></div>
-						<div class="hn" id="hn27"></div>
-					</div>
-				</th>
-				<th class="c8 q02" id="28">
-					<div class="cb" id="cb28">
-						<div class="mn" id="mn28"></div>
-						<div class="hn" id="hn28"></div>
-					</div>
-				</th>
-				
-			</tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th class="c0 q10" id="30">
-					<div class="cb" id="cb30">
-						<div class="mn" id="mn30"></div>
-						<div class="hn" id="hn30"></div>
-					</div>
-				</th>
-				<th class="c1 q10" id="31">
-					<div class="cb" id="cb31">
-						<div class="mn" id="mn31"></div>
-						<div class="hn" id="hn31"></div>
-					</div>
-				</th>
-				<th class="c2 q10" id="32">
-					<div class="cb" id="cb32">
-						<div class="mn" id="mn32"></div>
-						<div class="hn" id="hn32"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q11" id="33">
-					<div class="cb" id="cb33">
-						<div class="mn" id="mn33"></div>
-						<div class="hn" id="hn33"></div>
-					</div>
-				</th>
-				<th class="c4 q11" id="34">
-					<div class="cb" id="cb34">
-						<div class="mn" id="mn34"></div>
-						<div class="hn" id="hn34"></div>
-					</div>
-				</th>
-				<th class="c5 q11" id="35">
-					<div class="cb" id="cb35">
-						<div class="mn" id="mn35"></div>
-						<div class="hn" id="hn35"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q12" id="36">
-					<div class="cb" id="cb36">
-						<div class="mn" id="mn36"></div>
-						<div class="hn" id="hn36"></div>
-					</div>
-				</th>
-				<th class="c7 q12" id="37">
-					<div class="cb" id="cb37">
-						<div class="mn" id="mn37"></div>
-						<div class="hn" id="hn37"></div>
-					</div>
-				</th>
-				<th class="c8 q12" id="38">
-					<div class="cb" id="cb38">
-						<div class="mn" id="mn38"></div>
-						<div class="hn" id="hn38"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q10" id="40">
-					<div class="cb" id="cb40">
-						<div class="mn" id="mn40"></div>
-						<div class="hn" id="hn40"></div>
-					</div>
-				</th>
-				<th class="c1 q10" id="41">
-					<div class="cb" id="cb41">
-						<div class="mn" id="mn41"></div>
-						<div class="hn" id="hn41"></div>
-					</div>
-				</th>
-				<th class="c2 q10" id="42">
-					<div class="cb" id="cb42">
-						<div class="mn" id="mn42"></div>
-						<div class="hn" id="hn42"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q11" id="43">
-					<div class="cb" id="cb43">
-						<div class="mn" id="mn43"></div>
-						<div class="hn" id="hn43"></div>
-					</div>
-				</th>
-				<th class="c4 q11" id="44">
-					<div class="cb" id="cb44">
-						<div class="mn" id="mn44"></div>
-						<div class="hn" id="hn44"></div>
-					</div>
-				</th>
-				<th class="c5 q11" id="45">
-					<div class="cb" id="cb45">
-						<div class="mn" id="mn45"></div>
-						<div class="hn" id="hn45"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q12" id="46">
-					<div class="cb" id="cb46">
-						<div class="mn" id="mn46"></div>
-						<div class="hn" id="hn46"></div>
-					</div>
-				</th>
-				<th class="c7 q12" id="47">
-					<div class="cb" id="cb47">
-						<div class="mn" id="mn47"></div>
-						<div class="hn" id="hn47"></div>
-					</div>
-				</th>
-				<th class="c8 q12" id="48">
-					<div class="cb" id="cb48">
-						<div class="mn" id="mn48"></div>
-						<div class="hn" id="hn48"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q10" id="50">
-					<div class="cb" id="cb50">
-						<div class="mn" id="mn50"></div>
-						<div class="hn" id="hn50"></div>
-					</div>
-				</th>
-				<th class="c1 q10" id="51">
-					<div class="cb" id="cb51">
-						<div class="mn" id="mn51"></div>
-						<div class="hn" id="hn51"></div>
-					</div>
-				</th>
-				<th class="c2 q10" id="52">
-					<div class="cb" id="cb52">
-						<div class="mn" id="mn52"></div>
-						<div class="hn" id="hn52"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q11" id="53">
-					<div class="cb" id="cb53">
-						<div class="mn" id="mn53"></div>
-						<div class="hn" id="hn53"></div>
-					</div>
-				</th>
-				<th class="c4 q11" id="54">
-					<div class="cb" id="cb54">
-						<div class="mn" id="mn54"></div>
-						<div class="hn" id="hn54"></div>
-					</div>
-				</th>
-				<th class="c5 q11" id="55">
-					<div class="cb" id="cb55">
-						<div class="mn" id="mn55"></div>
-						<div class="hn" id="hn55"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q12" id="56">
-					<div class="cb" id="cb56">
-						<div class="mn" id="mn56"></div>
-						<div class="hn" id="hn56"></div>
-					</div>
-				</th>
-				<th class="c7 q12" id="57">
-					<div class="cb" id="cb57">
-						<div class="mn" id="mn57"></div>
-						<div class="hn" id="hn57"></div>
-					</div>
-				</th>
-				<th class="c8 q12" id="58">
-					<div class="cb" id="cb58">
-						<div class="mn" id="mn58"></div>
-						<div class="hn" id="hn58"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<th class="c0 q20" id="60">
-					<div class="cb" id="cb60">
-						<div class="mn" id="mn60"></div>
-						<div class="hn" id="hn60"></div>
-					</div>
-				</th>
-				<th class="c1 q20" id="61">
-					<div class="cb" id="cb61">
-						<div class="mn" id="mn61"></div>
-						<div class="hn" id="hn61"></div>
-					</div>
-				</th>
-				<th class="c2 q20" id="62">
-					<div class="cb" id="cb62">
-						<div class="mn" id="mn62"></div>
-						<div class="hn" id="hn62"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q21" id="63">
-					<div class="cb" id="cb63">
-						<div class="mn" id="mn63"></div>
-						<div class="hn" id="hn63"></div>
-					</div>
-				</th>
-				<th class="c4 q21" id="64">
-					<div class="cb" id="cb64">
-						<div class="mn" id="mn64"></div>
-						<div class="hn" id="hn64"></div>
-					</div>
-				</th>
-				<th class="c5 q21" id="65">
-					<div class="cb" id="cb65">
-						<div class="mn" id="mn65"></div>
-						<div class="hn" id="hn65"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q22" id="66">
-					<div class="cb" id="cb66">
-						<div class="mn" id="mn66"></div>
-						<div class="hn" id="hn66"></div>
-					</div>
-				</th>
-				<th class="c7 q22" id="67">
-					<div class="cb" id="cb67">
-						<div class="mn" id="mn67"></div>
-						<div class="hn" id="hn67"></div>
-					</div>
-				</th>
-				<th class="c8 q22" id="68">
-					<div class="cb" id="cb68">
-						<div class="mn" id="mn68"></div>
-						<div class="hn" id="hn68"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q20" id="70">
-					<div class="cb" id="cb70">
-						<div class="mn" id="mn70"></div>
-						<div class="hn" id="hn70"></div>
-					</div>
-				</th>
-				<th class="c1 q20" id="71">
-					<div class="cb" id="cb71">
-						<div class="mn" id="mn71"></div>
-						<div class="hn" id="hn71"></div>
-					</div>
-				</th>
-				<th class="c2 q20" id="72">
-					<div class="cb" id="cb72">
-						<div class="mn" id="mn72"></div>
-						<div class="hn" id="hn72"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c3 q21" id="73">
-					<div class="cb" id="cb73">
-						<div class="mn" id="mn73"></div>
-						<div class="hn" id="hn73"></div>
-					</div>
-				</th>
-				<th class="c4 q21" id="74">
-					<div class="cb" id="cb74">
-						<div class="mn" id="mn74"></div>
-						<div class="hn" id="hn74"></div>
-					</div>
-				</th>
-				<th class="c5 q21" id="75">
-					<div class="cb" id="cb75">
-						<div class="mn" id="mn75"></div>
-						<div class="hn" id="hn75"></div>
-					</div>
-				</th>
-				<td></td>
-				<th class="c6 q22" id="76">
-					<div class="cb" id="cb76">
-						<div class="mn" id="mn76"></div>
-						<div class="hn" id="hn76"></div>
-					</div>
-				</th>
-				<th class="c7 q22" id="77">
-					<div class="cb" id="cb77">
-						<div class="mn" id="mn77"></div>
-						<div class="hn" id="hn77"></div>
-					</div>
-				</th>
-				<th class="c8 q22" id="78">
-					<div class="cb" id="cb78">
-						<div class="mn" id="mn78"></div>
-						<div class="hn" id="hn78"></div>
-					</div>
-				</th>
-				
-			</tr>
-			<tr>
-				<th class="c0 q20" id="80">
-					<div class="cb" id="cb80">
-						<div class="mn" id="mn80"></div>
-						<div class="hn" id="hn80"></div>
-					</div>
-				</th>
-				<th class="c1 q20" id="81">
-					<div class="cb" id="cb81">
-						<div class="mn" id="mn81"></div>
-						<div class="hn" id="hn81"></div>
-					</div>
-				</th>
-				<th class="c2 q20" id="82">
-					<div class="cb" id="cb82">
-						<div class="mn" id="mn82"></div>
-						<div class="hn" id="hn82"></div>
-					</div>
-				</th>
-				<td></td><th class="c3 q21" id="83">
-					<div class="cb" id="cb83">
-						<div class="mn" id="mn83"></div>
-						<div class="hn" id="hn83"></div>
-					</div>
-				</th>
-				<th class="c4 q21" id="84">
-					<div class="cb" id="cb84">
-						<div class="mn" id="mn84"></div>
-						<div class="hn" id="hn84"></div>
-					</div>
-				</th>
-				<th class="c5 q21" id="85">
-					<div class="cb" id="cb85">
-						<div class="mn" id="mn85"></div>
-						<div class="hn" id="hn85"></div>
-					</div>
-				</th>
-				<td></td><th class="c6 q22" id="86">
-					<div class="cb" id="cb86">
-						<div class="mn" id="mn86"></div>
-						<div class="hn" id="hn86"></div>
-					</div>
-				</th>
-				<th class="c7 q22" id="87">
-					<div class="cb" id="cb87">
-						<div class="mn" id="mn87"></div>
-						<div class="hn" id="hn87"></div>
-					</div>
-				</th>
-				<th class="c8 q22" id="88">
-					<div class="cb" id="cb88">
-						<div class="mn" id="mn88"></div>
-						<div class="hn" id="hn88"></div>
-					</div>
-				</th>
-				
-			</tr>
-</table>
-
-		</div>
-		<input id="pressed_key" type="hidden" value="">
+			<div class="left">
+				<table class="g hv" id="grid">
+					<tr>
+						<th class="c0 q00" id="00">
+							<div class="cb" id="cb00">
+								<div class="mn" id="mn00"></div>
+								<div class="hn" id="hn00"></div>
+							</div>
+						</th>
+						<th class="c1 q00" id="01">
+							<div class="cb" id="cb01">
+								<div class="mn" id="mn01"></div>
+								<div class="hn" id="hn01"></div>
+							</div>
+						</th>
+						<th class="c2 q00" id="02">
+							<div class="cb" id="cb02">
+								<div class="mn" id="mn02"></div>
+								<div class="hn" id="hn02"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q01" id="03">
+							<div class="cb" id="cb03">
+								<div class="mn" id="mn03"></div>
+								<div class="hn" id="hn03"></div>
+							</div>
+						</th>
+						<th class="c4 q01" id="04">
+							<div class="cb" id="cb04">
+								<div class="mn" id="mn04"></div>
+								<div class="hn" id="hn04"></div>
+							</div>
+						</th>
+						<th class="c5 q01" id="05">
+							<div class="cb" id="cb05">
+								<div class="mn" id="mn05"></div>
+								<div class="hn" id="hn05"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q02" id="06">
+							<div class="cb" id="cb06">
+								<div class="mn" id="mn06"></div>
+								<div class="hn" id="hn06"></div>
+							</div>
+						</th>
+						<th class="c7 q02" id="07">
+							<div class="cb" id="cb07">
+								<div class="mn" id="mn07"></div>
+								<div class="hn" id="hn07"></div>
+							</div>
+						</th>
+						<th class="c8 q02" id="08">
+							<div class="cb" id="cb08">
+								<div class="mn" id="mn08"></div>
+								<div class="hn" id="hn08"></div>
+							</div>
+						</th>
+					</tr>
+					<tr>
+						<th class="c0 q00" id="10">
+							<div class="cb" id="cb10">
+								<div class="mn" id="mn10"></div>
+								<div class="hn" id="hn10"></div>
+							</div>
+						</th>
+						<th class="c1 q00" id="11">
+							<div class="cb" id="cb11">
+								<div class="mn" id="mn11"></div>
+								<div class="hn" id="hn11"></div>
+							</div>
+						</th>
+						<th class="c2 q00" id="12">
+							<div class="cb" id="cb12">
+								<div class="mn" id="mn12"></div>
+								<div class="hn" id="hn12"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q01" id="13">
+							<div class="cb" id="cb13">
+								<div class="mn" id="mn13"></div>
+								<div class="hn" id="hn13"></div>
+							</div>
+						</th>
+						<th class="c4 q01" id="14">
+							<div class="cb" id="cb14">
+								<div class="mn" id="mn14"></div>
+								<div class="hn" id="hn14"></div>
+							</div>
+						</th>
+						<th class="c5 q01" id="15">
+							<div class="cb" id="cb15">
+								<div class="mn" id="mn15"></div>
+								<div class="hn" id="hn15"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q02" id="16">
+							<div class="cb" id="cb16">
+								<div class="mn" id="mn16"></div>
+								<div class="hn" id="hn16"></div>
+							</div>
+						</th>
+						<th class="c7 q02" id="17">
+							<div class="cb" id="cb17">
+								<div class="mn" id="mn17"></div>
+								<div class="hn" id="hn17"></div>
+							</div>
+						</th>
+						<th class="c8 q02" id="18">
+							<div class="cb" id="cb18">
+								<div class="mn" id="mn18"></div>
+								<div class="hn" id="hn18"></div>
+							</div>
+						</th>
+						
+					</tr>
+					<tr>	
+						<th class="c0 q00" id="20">
+							<div class="cb" id="cb20">
+								<div class="mn" id="mn20"></div>
+								<div class="hn" id="hn20"></div>
+							</div>
+						</th>
+						<th class="c1 q00" id="21">
+							<div class="cb" id="cb21">
+								<div class="mn" id="mn21"></div>
+								<div class="hn" id="hn21"></div>
+							</div>
+						</th>
+						<th class="c2 q00" id="22">
+							<div class="cb" id="cb22">
+								<div class="mn" id="mn22"></div>
+								<div class="hn" id="hn22"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q01" id="23">
+							<div class="cb" id="cb23">
+								<div class="mn" id="mn23"></div>
+								<div class="hn" id="hn23"></div>
+							</div>
+						</th>
+						<th class="c4 q01" id="24">
+							<div class="cb" id="cb24">
+								<div class="mn" id="mn24"></div>
+								<div class="hn" id="hn24"></div>
+							</div>
+						</th>
+						<th class="c5 q01" id="25">
+							<div class="cb" id="cb25">
+								<div class="mn" id="mn25"></div>
+								<div class="hn" id="hn25"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q02" id="26">
+							<div class="cb" id="cb26">
+								<div class="mn" id="mn26"></div>
+								<div class="hn" id="hn26"></div>
+							</div>
+						</th>
+						<th class="c7 q02" id="27">
+							<div class="cb" id="cb27">
+								<div class="mn" id="mn27"></div>
+								<div class="hn" id="hn27"></div>
+							</div>
+						</th>
+						<th class="c8 q02" id="28">
+							<div class="cb" id="cb28">
+								<div class="mn" id="mn28"></div>
+								<div class="hn" id="hn28"></div>
+							</div>
+						</th>
+						
+					</tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th class="c0 q10" id="30">
+							<div class="cb" id="cb30">
+								<div class="mn" id="mn30"></div>
+								<div class="hn" id="hn30"></div>
+							</div>
+						</th>
+						<th class="c1 q10" id="31">
+							<div class="cb" id="cb31">
+								<div class="mn" id="mn31"></div>
+								<div class="hn" id="hn31"></div>
+							</div>
+						</th>
+						<th class="c2 q10" id="32">
+							<div class="cb" id="cb32">
+								<div class="mn" id="mn32"></div>
+								<div class="hn" id="hn32"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q11" id="33">
+							<div class="cb" id="cb33">
+								<div class="mn" id="mn33"></div>
+								<div class="hn" id="hn33"></div>
+							</div>
+						</th>
+						<th class="c4 q11" id="34">
+							<div class="cb" id="cb34">
+								<div class="mn" id="mn34"></div>
+								<div class="hn" id="hn34"></div>
+							</div>
+						</th>
+						<th class="c5 q11" id="35">
+							<div class="cb" id="cb35">
+								<div class="mn" id="mn35"></div>
+								<div class="hn" id="hn35"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q12" id="36">
+							<div class="cb" id="cb36">
+								<div class="mn" id="mn36"></div>
+								<div class="hn" id="hn36"></div>
+							</div>
+						</th>
+						<th class="c7 q12" id="37">
+							<div class="cb" id="cb37">
+								<div class="mn" id="mn37"></div>
+								<div class="hn" id="hn37"></div>
+							</div>
+						</th>
+						<th class="c8 q12" id="38">
+							<div class="cb" id="cb38">
+								<div class="mn" id="mn38"></div>
+								<div class="hn" id="hn38"></div>
+							</div>
+						</th>
+					</tr>
+					<tr>
+						<th class="c0 q10" id="40">
+							<div class="cb" id="cb40">
+								<div class="mn" id="mn40"></div>
+								<div class="hn" id="hn40"></div>
+							</div>
+						</th>
+						<th class="c1 q10" id="41">
+							<div class="cb" id="cb41">
+								<div class="mn" id="mn41"></div>
+								<div class="hn" id="hn41"></div>
+							</div>
+						</th>
+						<th class="c2 q10" id="42">
+							<div class="cb" id="cb42">
+								<div class="mn" id="mn42"></div>
+								<div class="hn" id="hn42"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q11" id="43">
+							<div class="cb" id="cb43">
+								<div class="mn" id="mn43"></div>
+								<div class="hn" id="hn43"></div>
+							</div>
+						</th>
+						<th class="c4 q11" id="44">
+							<div class="cb" id="cb44">
+								<div class="mn" id="mn44"></div>
+								<div class="hn" id="hn44"></div>
+							</div>
+						</th>
+						<th class="c5 q11" id="45">
+							<div class="cb" id="cb45">
+								<div class="mn" id="mn45"></div>
+								<div class="hn" id="hn45"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q12" id="46">
+							<div class="cb" id="cb46">
+								<div class="mn" id="mn46"></div>
+								<div class="hn" id="hn46"></div>
+							</div>
+						</th>
+						<th class="c7 q12" id="47">
+							<div class="cb" id="cb47">
+								<div class="mn" id="mn47"></div>
+								<div class="hn" id="hn47"></div>
+							</div>
+						</th>
+						<th class="c8 q12" id="48">
+							<div class="cb" id="cb48">
+								<div class="mn" id="mn48"></div>
+								<div class="hn" id="hn48"></div>
+							</div>
+						</th>
+						
+					</tr>
+					<tr>
+						<th class="c0 q10" id="50">
+							<div class="cb" id="cb50">
+								<div class="mn" id="mn50"></div>
+								<div class="hn" id="hn50"></div>
+							</div>
+						</th>
+						<th class="c1 q10" id="51">
+							<div class="cb" id="cb51">
+								<div class="mn" id="mn51"></div>
+								<div class="hn" id="hn51"></div>
+							</div>
+						</th>
+						<th class="c2 q10" id="52">
+							<div class="cb" id="cb52">
+								<div class="mn" id="mn52"></div>
+								<div class="hn" id="hn52"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q11" id="53">
+							<div class="cb" id="cb53">
+								<div class="mn" id="mn53"></div>
+								<div class="hn" id="hn53"></div>
+							</div>
+						</th>
+						<th class="c4 q11" id="54">
+							<div class="cb" id="cb54">
+								<div class="mn" id="mn54"></div>
+								<div class="hn" id="hn54"></div>
+							</div>
+						</th>
+						<th class="c5 q11" id="55">
+							<div class="cb" id="cb55">
+								<div class="mn" id="mn55"></div>
+								<div class="hn" id="hn55"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q12" id="56">
+							<div class="cb" id="cb56">
+								<div class="mn" id="mn56"></div>
+								<div class="hn" id="hn56"></div>
+							</div>
+						</th>
+						<th class="c7 q12" id="57">
+							<div class="cb" id="cb57">
+								<div class="mn" id="mn57"></div>
+								<div class="hn" id="hn57"></div>
+							</div>
+						</th>
+						<th class="c8 q12" id="58">
+							<div class="cb" id="cb58">
+								<div class="mn" id="mn58"></div>
+								<div class="hn" id="hn58"></div>
+							</div>
+						</th>
+						
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th class="c0 q20" id="60">
+							<div class="cb" id="cb60">
+								<div class="mn" id="mn60"></div>
+								<div class="hn" id="hn60"></div>
+							</div>
+						</th>
+						<th class="c1 q20" id="61">
+							<div class="cb" id="cb61">
+								<div class="mn" id="mn61"></div>
+								<div class="hn" id="hn61"></div>
+							</div>
+						</th>
+						<th class="c2 q20" id="62">
+							<div class="cb" id="cb62">
+								<div class="mn" id="mn62"></div>
+								<div class="hn" id="hn62"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q21" id="63">
+							<div class="cb" id="cb63">
+								<div class="mn" id="mn63"></div>
+								<div class="hn" id="hn63"></div>
+							</div>
+						</th>
+						<th class="c4 q21" id="64">
+							<div class="cb" id="cb64">
+								<div class="mn" id="mn64"></div>
+								<div class="hn" id="hn64"></div>
+							</div>
+						</th>
+						<th class="c5 q21" id="65">
+							<div class="cb" id="cb65">
+								<div class="mn" id="mn65"></div>
+								<div class="hn" id="hn65"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q22" id="66">
+							<div class="cb" id="cb66">
+								<div class="mn" id="mn66"></div>
+								<div class="hn" id="hn66"></div>
+							</div>
+						</th>
+						<th class="c7 q22" id="67">
+							<div class="cb" id="cb67">
+								<div class="mn" id="mn67"></div>
+								<div class="hn" id="hn67"></div>
+							</div>
+						</th>
+						<th class="c8 q22" id="68">
+							<div class="cb" id="cb68">
+								<div class="mn" id="mn68"></div>
+								<div class="hn" id="hn68"></div>
+							</div>
+						</th>
+						
+					</tr>
+					<tr>
+						<th class="c0 q20" id="70">
+							<div class="cb" id="cb70">
+								<div class="mn" id="mn70"></div>
+								<div class="hn" id="hn70"></div>
+							</div>
+						</th>
+						<th class="c1 q20" id="71">
+							<div class="cb" id="cb71">
+								<div class="mn" id="mn71"></div>
+								<div class="hn" id="hn71"></div>
+							</div>
+						</th>
+						<th class="c2 q20" id="72">
+							<div class="cb" id="cb72">
+								<div class="mn" id="mn72"></div>
+								<div class="hn" id="hn72"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q21" id="73">
+							<div class="cb" id="cb73">
+								<div class="mn" id="mn73"></div>
+								<div class="hn" id="hn73"></div>
+							</div>
+						</th>
+						<th class="c4 q21" id="74">
+							<div class="cb" id="cb74">
+								<div class="mn" id="mn74"></div>
+								<div class="hn" id="hn74"></div>
+							</div>
+						</th>
+						<th class="c5 q21" id="75">
+							<div class="cb" id="cb75">
+								<div class="mn" id="mn75"></div>
+								<div class="hn" id="hn75"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c6 q22" id="76">
+							<div class="cb" id="cb76">
+								<div class="mn" id="mn76"></div>
+								<div class="hn" id="hn76"></div>
+							</div>
+						</th>
+						<th class="c7 q22" id="77">
+							<div class="cb" id="cb77">
+								<div class="mn" id="mn77"></div>
+								<div class="hn" id="hn77"></div>
+							</div>
+						</th>
+						<th class="c8 q22" id="78">
+							<div class="cb" id="cb78">
+								<div class="mn" id="mn78"></div>
+								<div class="hn" id="hn78"></div>
+							</div>
+						</th>
+						
+					</tr>
+					<tr>
+						<th class="c0 q20" id="80">
+							<div class="cb" id="cb80">
+								<div class="mn" id="mn80"></div>
+								<div class="hn" id="hn80"></div>
+							</div>
+						</th>
+						<th class="c1 q20" id="81">
+							<div class="cb" id="cb81">
+								<div class="mn" id="mn81"></div>
+								<div class="hn" id="hn81"></div>
+							</div>
+						</th>
+						<th class="c2 q20" id="82">
+							<div class="cb" id="cb82">
+								<div class="mn" id="mn82"></div>
+								<div class="hn" id="hn82"></div>
+							</div>
+						</th>
+						<td></td>
+						<th class="c3 q21" id="83">
+							<div class="cb" id="cb83">
+								<div class="mn" id="mn83"></div>
+								<div class="hn" id="hn83"></div>
+							</div>
+						</th>
+						<th class="c4 q21" id="84">
+							<div class="cb" id="cb84">
+								<div class="mn" id="mn84"></div>
+								<div class="hn" id="hn84"></div>
+							</div>
+						</th>
+						<th class="c5 q21" id="85">
+							<div class="cb" id="cb85">
+								<div class="mn" id="mn85"></div>
+								<div class="hn" id="hn85"></div>
+							</div>
+						</th>
+						<td></td><th class="c6 q22" id="86">
+							<div class="cb" id="cb86">
+								<div class="mn" id="mn86"></div>
+								<div class="hn" id="hn86"></div>
+							</div>
+						</th>
+						<th class="c7 q22" id="87">
+							<div class="cb" id="cb87">
+								<div class="mn" id="mn87"></div>
+								<div class="hn" id="hn87"></div>
+							</div>
+						</th>
+						<th class="c8 q22" id="88">
+							<div class="cb" id="cb88">
+								<div class="mn" id="mn88"></div>
+								<div class="hn" id="hn88"></div>
+							</div>
+						</th>
+						
+					</tr>
+				</table>	
+				<div id="rowhint" class="hint1"></div>
+				<div id="colhint" class="hint1"></div>
+				<div id="sqhint" class="hint1"></div>
+				<div id="completed" class="completed"><span id="loc_completed">Completed!!!</span></div>
+				<table class="numbers">
+					<tr>
+						<td id="s1">1</td>
+						<td id="s2">2</td>
+						<td id="s3">3</td>
+						<td id="s4">4</td>
+						<td id="s5">5</td>
+						<td id="s6">6</td>
+						<td id="s7">7</td>
+						<td id="s8">8</td>
+						<td id="s9">9</td>
+						<td id="s0">X</td>
+					</tr>
+				</table>
+			</div> <!-- End of class=left -->
+			<div class="right">
+				<table class="info">
+					<tr>
+						<td id="s.timer"><span id="loc_timer">Timer:</span></td>
+						<td class="ibr" id="timer"></td>
+					</tr>
+				</table>
+				<table class="info" id="info">
+					<tr>
+						<td><span id="loc_difficulty">Difficulty:</span></td>
+						<td id="info_dif"></td>
+					</tr>
+				</table>
+				<table class="info" id="stack"></table>
+			</div> <!-- End of class=right -->
+			<div class="menu">
+				<table class="numbers">
+					<tr><td id="solve"><span id="loc_solve">SOLVE</span></td></tr>
+					<tr><td id="push"><span id="loc_mark">MARK</span></td></tr>
+					<tr><td id="gen"><span id="loc_gen">GENERATE</span></td></tr>
+					<tr><td id="restart"><span id="loc_restart">START OVER</span></td></tr>
+				</table>
+			</div> <!-- End of class=menu -->
+			<input id="pressed_key" type="hidden" value="">
 		</main>
 		<!-- <script src="tools.js"></script>  Pfffft.  This apparently just gets the console? -->
 		<script src="grid.js"></script>
-<script type="application/javascript">
+		<script type="application/javascript">
 function key_pressed(ev) {
 	gridder.key(ev.keyCode);
 };
@@ -588,21 +627,21 @@ window.onload = function() {
 	var supplied_grid_type = "random";
 	var supplied_grid = 1;
 
-	var p = window.location.href.indexOf("grid.html?p=");
-	if (-1!=p) {
+	var p = window.location.href.indexOf("sudoku.html?p=");
+	if (p!=-1) {
 		supplied_grid_type = "data";
-		supplied_grid = window.location.href.substr(p+12);
+		supplied_grid = window.location.href.substr(p+14);
 	} else {
-		var p = window.location.href.indexOf("grid.html?r=");
-		if (-1!=p) {
-			supplied_grid = 1*window.location.href.substr(p+12);
+		var p = window.location.href.indexOf("sudoku.html?r=");
+		if (p!=-1) {
+			supplied_grid = 1*window.location.href.substr(p+14);
 		}
 	}
 
 	gridder.doc = document;
 	gridder.init_ff3ext();
 	gridder.init();
-	if ("data"==supplied_grid_type) {
+	if (supplied_grid_type == "data") {
 		gridder.start_grid(supplied_grid);
 	} else {
 		gridder.generate(supplied_grid);
@@ -611,8 +650,7 @@ window.onload = function() {
 window.onunload = function() {
 	gridder.smart_save();
 };
-</script>
-
+		</script>
 		<script src="sudoku.js"></script>
 	</body>
 </html>
