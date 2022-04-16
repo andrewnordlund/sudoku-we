@@ -75,6 +75,12 @@ gridder = {
 			}
 		}
 	}, // End of set_num
+	/*
+		Called from the main page
+		
+		* loads preferences
+		* bundleServices?
+	 */
 	init_ff3ext: function() {
 		Components.utils.import("resource://sudoku/griddb.jsm");
 		gridder.prefs = Components.classes["@mozilla.org/preferences-service;1"]
@@ -97,10 +103,11 @@ gridder = {
 		}
 		// localize the texts...
 		var spans = gridder.doc.getElementsByTagName("span");
-		for (var i = 0;i<spans.length;i++) {
+		for (var i = 0; i < spans.length; i++) {
 			try {
 				var el = spans[i];
 				if (el.id.indexOf("loc_") == 0) {
+					// Looks like strings_bundle is
 					el.innerHTML = strings_bundle.GetStringFromName(el.id.substring(4));
 				}
 			} catch(e) {}
@@ -760,7 +767,8 @@ gridder = {
 		r = gridder.doc.getElementById("stack").insertRow(0);
 		c = r.insertCell(0);
 		c.id = "mark_" + i;
-		c.innerHTML = gridder.strings.getFormattedString("mark.label", [""+(i+1)], 1)
+		//c.innerHTML = gridder.strings.getFormattedString("mark.label", [""+(i+1)], 1)	// This should be replaced with a new localization thingy.
+		c.innerHTML = "Mark " + (i+1); 
 
 		c.addEventListener("click", gridder.pop_mark, false);
 	}, // End of push
