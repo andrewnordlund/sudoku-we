@@ -113,11 +113,13 @@ div.selmark {	/* currently selected number */
 }
 /***** OTHERS *****/
 .numbers td {	/* the numbers "menu" */
-	height: 60px;
+	height: 54px;
 	width: 30px;
 	text-align: center;
 	font-size: 20px;
 	border: solid 3px black;
+	background-position: bottom 100px;
+	padding-bottom: 0px;
 }
 
 .nbg0 { background-image: url('../skin/nbg0.png'); }
