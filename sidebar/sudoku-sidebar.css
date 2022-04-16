@@ -1,0 +1,8 @@
+body {
+	background-color: #808080;
+	border-right: thick inset #A0A0A0;
+}
+footer div button {
+	width: 90%;
+	margin: auto
+}

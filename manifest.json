@@ -31,6 +31,15 @@
 			"38": "skin/main-mid.png"
 		},
 		"default_title": "Sudoku"
-	},	
-	"web_accessible_resources" : ["content_scripts/*"]
+	},
+	"sidebar_action": {
+		"default_title": "Sudoku",
+		"default_panel": "sidebar/sudoku-sidebar.html",
+		"default_icon": {
+			"19": "skin/main-small.png",
+			"38": "skin/main-mid.png"
+		}
+	},
+	
+	"web_accessible_resources" : ["content_scripts/*", "sidebar/*"]
 }
