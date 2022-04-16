@@ -40,6 +40,10 @@
 			"38": "skin/main-mid.png"
 		}
 	},
-	
+	"options_ui" : {
+		"page" : "options/sudoku-options.html",
+		"browser_style" : true
+	},
+
 	"web_accessible_resources" : ["content_scripts/*", "sidebar/*"]
 }
