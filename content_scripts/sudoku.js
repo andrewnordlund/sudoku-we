@@ -10,12 +10,19 @@ sudokuCS = {
 		body = document.querySelector("body");
 		body.addEventListener("keyup", sudokuCS.key_pressed, false);
 		body.addEventListener("contextmenu", function () {return false;}, false);
+
+		let grid = null;
+		grid = document.getElementById("grid");
+		if (grid) grid.addEventListener("contextmenu", sudokuCS.handleRightMouse, false);
 	}, // End of init
 	key_pressed : function (ev) {
 		document.getElementById("pressed_key").value = ""+ev.keyCode;
 		console.log ("pressed " + ev.keyCode);
 		gridder.key(ev.keyCode);
-	}
+	}, // End of key_pressed
+	handleRightMouse : function (e) {
+		e.preventDefault();
+	}, // End of handleRightMouse
 }
 
 document.addEventListener("DOMContentLoaded", function () {
