@@ -240,7 +240,7 @@ gridder = {
 		gridder.timer_on = 0;
 		gridder.timer = setInterval(gridder.watch, 1000);
 
-	      if (dbug) console.log ("gidder::Finished Initting!");
+	      if (dbug) console.log ("gridder::Finished Initting!");
 		gridder.init_ui();
 	}, // End of init
 	restart: function() {
