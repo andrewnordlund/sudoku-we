@@ -4,29 +4,47 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Sudoku Options</title>
-		<link rel="stylesheet" href="sudoku-options.css" type="text/css" media="screen">
+		<link rel="Stylesheet" href="sudoku-options.css" type="text/css" media="screen">
+		<script src="/libs/sudoku.js"></script>
 	</head>	
 	<body>
 		<header>
 			<h1>Sudoku Options</h1>
 		</header>
 		<main>
-		<section>
-			<h2>Main Settings</h2>
-			<input type="checkbox" id="allowHardChk">
-			<label for="allowHardChk">Allow Hard</label>
-		</section>
-		<section>
-			<h2>Display Options</h2>
-			<input type="checkbox" id="showTooltipsChk">
-			<label for="showTooltipsChk">Show Tooltips With Hints</label>
-			<input type="checkbox" id="hightlightRowColChk">
-			<label for="hightlightRowColChk">Highlight the row and column under the mouse cursor</label>
-			<input type="checkbox" id="highlightWrongNumbersChk">
-			<label for="highlightWrongNumbersChk">Highlight wrongly placed numbers</label>
-		</section>
+			<section>
+				<h2>Main Settings</h2>
+				<div class="fieldHolder">
+					<input type="checkbox" id="allowHardChk">
+					<label for="allowHardChk">Allow Hard</label>
+				</div>
+			</section>
+			<section>
+				<h2>Display Options</h2>
+				<div class="fieldHolder">
+					<input type="checkbox" id="showTooltipsChk">
+					<label for="showTooltipsChk">Show Tooltips With Hints</label>
+				</div>
+				<div class="fieldHolder">
+					<input type="checkbox" id="hightlightRowColChk">
+					<label for="hightlightRowColChk">Highlight the row and column under the mouse cursor</label>
+				</div>
+				<div class="fieldHolder">
+					<input type="checkbox" id="highlightWrongNumbersChk">
+					<label for="highlightWrongNumbersChk">Highlight wrongly placed numbers</label>
+				</div>
+			</section>
+			<section id="devSection">
+                                <h2>Developer Options</h2>
+                                <!-- dbug -->
+                                <div>
+                                        <input type="checkbox" name="dbugChk" id="dbugChk">
+                                        <label for="dbugChk">Debugging</label>
+                                </div>
+                        </section>
 		</main>
 		<footer>
 		</footer>
+		<script src="sudoku-options.js"></script>
 	</body>
 </html>
