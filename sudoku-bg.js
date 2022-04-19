@@ -12,7 +12,7 @@ sudokuBG = {
 	}, // End of init
 	run : function () {
 		if (sudokuBG.dbug) console.log ("running.");
-		var friendsTab = null;
+		var sudokuTab = null;
 		browser.tabs.query({url:"moz-extension://8a44b277-5dde-4cf9-9d8b-b5ba07a491dc/" + sudokuBG.thePage}).then(function (tabs) {
 			if (tabs.length == 0) {
 				if (sudokuBG.dbug) console.log ("It's not already open.  Go ahead and open it now.");
