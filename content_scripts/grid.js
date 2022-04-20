@@ -138,13 +138,20 @@ gridder = {
 		gridder.notify_sidebar = function() { };
 	}, // End of init_gecko
 	loadprefs: function() {
+		gridder.show_hl_tips = sudoku.options["showTooltips"];
+		gridder.hl_cross = sudoku.options["hightlightRowCol"];
+		gridder.hl_errors = sudoku.options["highlightWrongNumbers"];
+		dbug = sudoku.options["dbug"];
+		/*
 		try { gridder.show_hl_tips = gridder.prefs.getBoolPref("hinttips"); } catch (e) { }
 		try { gridder.hl_cross = gridder.prefs.getBoolPref("hlcross"); } catch (e) { }
 		try { gridder.hl_errors = gridder.prefs.getBoolPref("hlerrors"); } catch (e) { }
-
+		*/
 		document.getElementById("grid").className = gridder.hl_cross ? "g hv" : "g";
 	}, // End of loadprefs
 	observe: function(subject, topic, data) {
+			 /*
+			    // Gonna have to figure out how to do this....
 		if (dbug) console.log("observe:" + subject + "," + topic + "," + data + "<");
 		if ("nsPref:changed"!=topic) {
 			return;
@@ -157,8 +164,26 @@ gridder = {
 		} else if ("hlerrors"==data) {
 			gridder.hl_errors = gridder.prefs.getBoolPref("hlerrors");
 		}
-		gridder.check_integrity();
+		*/
+		browser.storage.onChanged.addListener(gridder.checkStorageChange);
+		//gridder.check_integrity();
 	}, // End of observe
+	logStorageChange : (changes, area) {
+		console.log("Change in storage area: " + area);
+
+		let changedItems = Object.keys(changes);
+
+		for (let item of changedItems) {
+			if (item == "options") sudoku.loadOptions(function () {gridder.loadprefs();gridder.check_integrity();}, sudoku.errorFun);
+			/*
+			console.log(item + " has changed:");
+			console.log("Old value: ");
+			console.log(changes[item].oldValue);
+			console.log("New value: ");
+			console.log(changes[item].newValue);
+			*/
+		}
+	},
 	init_opera: function() {
 		gridder.alert_cell = function(r, c, state) {
 			if (-1==gridder.doc.getElementById("cb" + r + c).className.indexOf("hard")) {
@@ -746,7 +771,7 @@ gridder = {
 		if (dbug) console.log("Smartsave Gathering.");
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
 		griddb.save_grid(out, data);
-		gridder.notify_sidebar();
+		//gridder.notify_sidebar();	// I don't tink we need to do this.  Okay, what this does is if the sidebar is still open, it updates the contents.  Maybe we need to do this, but let's take care of the saving first.
 	}, // End of smart_save
 	push: function() {
 		var r, c, i;
@@ -848,11 +873,10 @@ gridder = {
 	generate: function() {
 		var s = new SOLVER();
 		var difficulty = 10;
-		try {
-			if (gridder.prefs.getBoolPref("allowhard")) {
-				difficulty = 70;
-			}
-		} catch(e) {}
+		if (sudoku.options["allowHard"] === true)) {
+			difficulty = 70;
+		}
+		
 		s.generate(difficulty);
 		gridder.start_grid(s.get_condensed_grid())
 	}, // End of generate

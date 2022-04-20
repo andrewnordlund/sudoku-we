@@ -4,7 +4,6 @@ if (typeof (sudokuCS) == "undefined") {
 
 sudokuCS = {
 	dbug : true,
-	gidder : null,
 	init : function () {
 		let body = null;
 		body = document.querySelector("body");
@@ -31,12 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	var supplied_grid = 1;
 
 	var p = window.location.href.indexOf("sudoku.html?p=");
-	if (p!=-1) {
+	if (p != -1) { // it's there;  there's already a puzzle
 		supplied_grid_type = "data";
 		supplied_grid = window.location.href.substr(p+14);
 	} else {
-		var p = window.location.href.indexOf("sudoku.html?r=");
-		if (p!=-1) {
+		var r = window.location.href.indexOf("sudoku.html?r=");
+		if (r != -1) {  // It's there; and this should be getting the difficulty level?  Like r=0?
 			supplied_grid = 1*window.location.href.substr(p+14);
 		}
 	}
@@ -50,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	} else {
 		gridder.generate(supplied_grid);
 	}
+}, false);
+document.addEventListener("unload", function () {
+	gridder.smart_save();
 }, false);
 
 sudokuCS.init();

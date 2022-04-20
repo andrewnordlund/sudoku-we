@@ -74,139 +74,139 @@ function format_date(d, fmt, monthNames) {
 }
 
 var gridsb = {
-init: function() {
-	this.browser = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-	   .getInterface(Components.interfaces.nsIWebNavigation)
-	   .QueryInterface(Components.interfaces.nsIDocShellTreeItem)
-	   .rootTreeItem
-	   .QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-	   .getInterface(Components.interfaces.nsIDOMWindow).gBrowser;
+	init: function() {
+		this.browser = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+		   .getInterface(Components.interfaces.nsIWebNavigation)
+		   .QueryInterface(Components.interfaces.nsIDocShellTreeItem)
+		   .rootTreeItem
+		   .QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+		   .getInterface(Components.interfaces.nsIDOMWindow).gBrowser;
 
-	this.strings = document.getElementById("main-strings");
-	this.saved = document.getElementById("saved");
-	this.item_template = document.getElementById("item_template");
+		this.strings = document.getElementById("main-strings");
+		this.saved = document.getElementById("saved");
+		this.item_template = document.getElementById("item_template");
 
-	this.date_format = this.strings.getString("dateformat")
+		this.date_format = this.strings.getString("dateformat")
 
-	this.show_saved();
-},
-unload: function() {
-	// called when the sidebar is hidden
-},
-show_saved: function() {
-	while(this.saved.getRowCount()) {
-		this.saved.removeItemAt(0);
-	}
-
-	var s1 = griddb.conn.createStatement("SELECT givens, date FROM saves ORDER BY date");
-	while (s1.executeStep()) {
-		var g = s1.getString(0);
-		var d = s1.getInt64(1);
-		this.add_saved(g, d);
-	}
-},
-add_saved: function(grid, dtx) {
-	var item = document.createElement("richlistitem");
-	var hb = document.createElement("hbox");
-	var vb = document.createElement("vbox");
-	var s0;
-
-	var dt = new Date();
-	dt.setTime(dtx);
-
-	hb.flex = 1;
-	hb.align = "center";
-	vb.flex = 1;
-
-	item.tooltip = "gridtip";
-	item.id = "item_" + grid;
-	
-	var temp = format_date(dt, gridsb.date_format);
-	s0 = document.createElement("description");
-	s0.className = "clickable";
-	s0.textContent = temp;
-	vb.appendChild(s0);
-
-	s0 = document.createElement("image");
-	s0.setAttribute("src", "chrome://sudoku/skin/main-small.png");
-	hb.appendChild(s0);
-
-	hb.appendChild(vb);
-	item.appendChild(hb);
-	item.addEventListener("click", function(ev) {gridsb.action(ev, grid)} , false);
-	this.saved.appendChild(item);
-},
-/*actionid: function(ev, src) {
-	alert("EVENT:" + ev + " SRC:" + src.id);
-},*/
-action: function(ev, grid) {
-	var uri = "chrome://sudoku/content/grid.html?p="+grid;
-	this.browser.openUILink(uri, ev, false, true);
-},
-random: function(ev, difficulty) {
-	var uri= "chrome://sudoku/content/grid.html?r=" + difficulty;
-	this.browser.openUILink(uri, ev, false, true);
-},
-tip_showing: function(ev) {
-	var fvr = this.saved.getIndexOfFirstVisibleRow();
-	var lvr = fvr + this.saved.getNumberOfVisibleRows() + 1;
-	var found = null;
-	for (var i = fvr;i<lvr;i++) {
-		var r = this.saved.getItemAtIndex(i).getBoundingClientRect();
-		if (ev.clientY>=r.top && ev.clientY<=r.bottom && ev.clientX>=r.left && ev.clientX<=r.right) {
-			found = this.saved.getItemAtIndex(i);
-			break;
+		this.show_saved();
+	}, // End of init
+	unload: function() {
+		// called when the sidebar is hidden
+	}, // End of unload
+	show_saved: function() {
+		while(this.saved.getRowCount()) {
+			this.saved.removeItemAt(0);
 		}
-	}
-	if (null==found) {
-		return false;
-	}
-	if ("item_"!=found.id.substring(0, 5)) {
-		return false;
-	}
-	var grid_id = found.id.substring(5);
-	var grid = griddb.load_grid(grid_id);
-	if (null==grid) {
-		return false;
-	}
-	for (var r = 0;r<9;r++) {
-		for (var c = 0;c<9;c++) {
-			var el = document.getElementById("g" + (r*9+c));
-			var v = grid[0][r][c];
-			el.className = "";
-			if (0==v) {
-				el.value = '';
-			} else if (v<0) {
-				el.value = -v;
-				el.className = "givens";
-			} else {
-				el.value = v;
+
+		var s1 = griddb.conn.createStatement("SELECT givens, date FROM saves ORDER BY date");
+		while (s1.executeStep()) {
+			var g = s1.getString(0);
+			var d = s1.getInt64(1);
+			this.add_saved(g, d);
+		}
+	}, // End of show_saved
+	add_saved: function(grid, dtx) {
+		var item = document.createElement("richlistitem");
+		var hb = document.createElement("hbox");
+		var vb = document.createElement("vbox");
+		var s0;
+
+		var dt = new Date();
+		dt.setTime(dtx);
+
+		hb.flex = 1;
+		hb.align = "center";
+		vb.flex = 1;
+
+		item.tooltip = "gridtip";
+		item.id = "item_" + grid;
+	
+		var temp = format_date(dt, gridsb.date_format);
+		s0 = document.createElement("description");
+		s0.className = "clickable";
+		s0.textContent = temp;
+		vb.appendChild(s0);
+
+		s0 = document.createElement("image");
+		s0.setAttribute("src", "chrome://sudoku/skin/main-small.png");
+		hb.appendChild(s0);
+
+		hb.appendChild(vb);
+		item.appendChild(hb);
+		item.addEventListener("click", function(ev) {gridsb.action(ev, grid)} , false);
+		this.saved.appendChild(item);
+	}, // End of add_saved
+	/*actionid: function(ev, src) {
+		alert("EVENT:" + ev + " SRC:" + src.id);
+	},*/
+	action: function(ev, grid) {
+		var uri = "chrome://sudoku/content/grid.html?p="+grid;
+		this.browser.openUILink(uri, ev, false, true);
+	}, // End of action
+	random: function(ev, difficulty) {
+		var uri= "chrome://sudoku/content/grid.html?r=" + difficulty;
+		this.browser.openUILink(uri, ev, false, true);
+	}, // End of random
+	tip_showing: function(ev) {
+		var fvr = this.saved.getIndexOfFirstVisibleRow();
+		var lvr = fvr + this.saved.getNumberOfVisibleRows() + 1;
+		var found = null;
+		for (var i = fvr;i<lvr;i++) {
+			var r = this.saved.getItemAtIndex(i).getBoundingClientRect();
+			if (ev.clientY>=r.top && ev.clientY<=r.bottom && ev.clientX>=r.left && ev.clientX<=r.right) {
+				found = this.saved.getItemAtIndex(i);
+				break;
 			}
 		}
-	}
-	if (grid[2]%60<10) {
-		document.getElementById("tm").value = "" + Math.floor(grid[2]/60) + ":0" + (grid[2]%60);
-	} else {
-		document.getElementById("tm").value = "" + Math.floor(grid[2]/60) + ":" + (grid[2]%60);
-	}
-	if (grid.length>4) {
-		var temp = "";
-		if (grid[4]>0 && grid[4]<=30) {
-			temp = this.strings.getString("gridsidebar.easy");
-		} else if (grid[4]>30 && grid[4]<=50) {
-			temp = this.strings.getString("gridsidebar.medium");
-		} else if (grid[4]>50) {
-			temp = this.strings.getString("gridsidebar.hard");
-		} else {
-			temp = this.strings.getString("gridsidebar.unsolvable");
+		if (null==found) {
+			return false;
 		}
-		document.getElementById("difficulty").value = temp;
-	}
+		if (found.id.substring(0, 5) != "item_") {
+			return false;
+		}
+		var grid_id = found.id.substring(5);
+		var grid = griddb.load_grid(grid_id);
+		if (null==grid) {
+			return false;
+		}
+		for (var r = 0;r<9;r++) {
+			for (var c = 0;c<9;c++) {
+				var el = document.getElementById("g" + (r*9+c));
+				var v = grid[0][r][c];
+				el.className = "";
+				if (0==v) {
+					el.value = '';
+				} else if (v<0) {
+					el.value = -v;
+					el.className = "givens";
+				} else {
+					el.value = v;
+				}
+			}
+		}
+		if (grid[2]%60<10) {
+			document.getElementById("tm").value = "" + Math.floor(grid[2]/60) + ":0" + (grid[2]%60);
+		} else {
+			document.getElementById("tm").value = "" + Math.floor(grid[2]/60) + ":" + (grid[2]%60);
+		}
+		if (grid.length>4) {
+			var temp = "";
+			if (grid[4]>0 && grid[4]<=30) {
+				temp = this.strings.getString("gridsidebar.easy");
+			} else if (grid[4]>30 && grid[4]<=50) {
+				temp = this.strings.getString("gridsidebar.medium");
+			} else if (grid[4]>50) {
+				temp = this.strings.getString("gridsidebar.hard");
+			} else {
+				temp = this.strings.getString("gridsidebar.unsolvable");
+			}
+			document.getElementById("difficulty").value = temp;
+		}
 	return true;
-},
-grid_updated: function() {
-	gridsb.show_saved();
-},
-_sentinel_0: 0
-};
+	}, // End of tip_showing
+	grid_updated: function() {
+		gridsb.show_saved();
+	}, // End of grid_update
+	_sentinel_0: 0
+}; // End of gridsb
 
