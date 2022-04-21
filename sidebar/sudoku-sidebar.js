@@ -1,7 +1,8 @@
-let newPuzzleBtn, optionsBtn = null;
+let newPuzzleBtn, optionsBtn, listHolder = null;
 
 newPuzzleBtn = document.getElementById("newPuzzleBtn");
 optionsBtn = document.getElementById("optionsBtn");
+listHolder = document.getElementById("listHolder");
 if (newPuzzleBtn) {
 	newPuzzleBtn.addEventListener("click", newPuzzle, false);
 }
@@ -10,6 +11,8 @@ if (optionsBtn) {
 	optionsBtn.addEventListener("click", openOptionsPage, false);
 } else {
 }
+
+if (listHolder) listHolder.innerHTML = "<p> - </p>";
 
 function newPuzzle () {
 	let thePage = "/content_scripts/sudoku.html?r=0";
@@ -32,6 +35,27 @@ function newPuzzle () {
 
 } // End of newPuzzle
 
+
 function openOptionsPage () {
 	browser.runtime.openOptionsPage();
 } // end of openOptionsPage
+
+sudoku.load_grids(populateUnfinishedList);
+
+function populateUnfinishedList () {
+	if (sudoku.countObjs(sudoku.loadedGrids) > 0) {
+		listHolder.innerHTML = "";
+		let ol = document.createElement("ol");
+		listHolder.appendChild(ol);
+
+		for (let grid in sudoku.loadedGrids) {
+			let li = document.createElement("li");
+			ol.appendChild(li);
+
+			let a = document.createElement("a");
+			a.textContent = sudoku.loadedGrids[grid]["date"];
+			a.setAttribute("href", "?grid=" + grid);
+			li.appendChild(a);
+		}
+	}
+}

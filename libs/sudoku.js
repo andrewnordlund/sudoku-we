@@ -13,6 +13,7 @@ sudoku = {
 		"dbug" : true
 	},
 	loaded : false,
+	loadedGrids : {},
 	postLoad : [],
 	init : function () {
 		// Set global values to their defaults
@@ -55,7 +56,38 @@ sudoku = {
 	errorFun : function (e) {
 		console.error ("Error! " + e);
 	}, // End of errorFun
-
+	add_grid : function(givens, data) {
+		let dt = new Date();
+		sudoku.loadedGrids[givens] = {"givens" : givens, "date" : dt, "data" : data};
+		sudoku.save_grids();
+	}, // End of add_grid
+	save_grids () {
+		let saved = browser.storage.local.set({"savedGrids" : sudoku.loadedGrids});
+	}, // End of save_grids
+	load_grids : function (callback) {
+		let savedObj = browser.storage.local.get("savedGrids");
+		savedObj.then (function (savedObj) {
+			if (savedObj.hasOwnProperty("savedGrids")) savedObj = savedObj["savedGrids"];
+			sudoku.loadedGrids = savedObj;
+			callback();
+		}, sudoku.errorFun);
+	}, // End of load_grid
+	load_grid : function (givens) {
+		sudoku.load_grids(function (grids) {}, sudoku.errorFun);
+	}, // End of load_grid
+	clear_grid: function(givens) {
+		if (sudoku.loadedGrids.hasOwnProperty(givens)) {
+			delete sudoku.loadedGrids(givens);
+			sudoku.save_grids();
+		}
+	}, // End of clear_grid
+	countObjs : function (obj) {
+		var returnValue = 0;
+		for (var i in obj) {
+			returnValue++;
+		}
+		return returnValue;
+	}, // End of countObjs
 }
 
 // Taken from griddb.js
@@ -82,8 +114,10 @@ var jsonhelper = {
 
 // This will have to be severely modified because we don't do SQL anymore; it's all storage.
 var griddb = {
-	conn: null,
+	// conn: null,
 	init: function() {
+		      // I doubt we'll need any of this...
+		     /*
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
                 	     .getService(Components.interfaces.nsIProperties)
 	                     .get("ProfD", Components.interfaces.nsIFile);
@@ -113,13 +147,17 @@ var griddb = {
 		if (createdb) {
 			this.createdb();
 		}
+		*/
 	}, // End of init
+	      /*
 	createdb: function() {
 		LOG("Creating griddb");
 		this.conn.executeSimpleSQL("CREATE TABLE saves (givens TEXT PRIMARY KEY, date INTEGER, data BLOB)");
 		LOG("Creating griddb - done");
 	}, // End of createdb
 	save_grid: function(givens, data) {
+		// Nope; not gonna need any of the original code:
+		// Note:  he's using givens as the key. Okay.  Fine.  I'll do the same
 		var s1 = this.conn.createStatement("SELECT count(*) FROM saves WHERE givens=?1");
 		s1.bindStringParameter(0, givens);
 		while (s1.executeStep()) {
@@ -162,11 +200,12 @@ var griddb = {
 		s1.execute();
 		s1.finalize();
 	}, // End of clear_grid
+	*/
 	__sentinel: 0 //so that we can write a , after every bloody member.
 }; // End of griddb
 
-griddb.init();
-jsonhelper.init();
+//griddb.init();
+//jsonhelper.init();
 
 
 if (sudoku.dbug) console.log ("sudoku.js loaded");

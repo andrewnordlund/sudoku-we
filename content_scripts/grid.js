@@ -168,7 +168,7 @@ gridder = {
 		browser.storage.onChanged.addListener(gridder.checkStorageChange);
 		//gridder.check_integrity();
 	}, // End of observe
-	logStorageChange : (changes, area) {
+	logStorageChange : function (changes, area) {
 		console.log("Change in storage area: " + area);
 
 		let changedItems = Object.keys(changes);
@@ -299,7 +299,7 @@ gridder = {
 		gridder.doc.getElementById("completed").style.visibility = "hidden";
 
 		gridder.difficulty = null;
-		var setup = griddb.load_grid(data);
+		var setup = sudoku.load_grid(data);
 		if (null!=setup) {
 			var i;
 			gridder.cache = setup[0];
@@ -336,7 +336,8 @@ gridder = {
 			}
 		}
 		if (dbug) console.log("gridder.difficulty:" + gridder.difficulty);
-		var temp = "";
+		var temp = "Blah!";
+		/*
 		if (gridder.difficulty>0 && gridder.difficulty<=30) {
 			temp = gridder.strings.getString("gridsidebar.easy");
 		} else if (gridder.difficulty>30 && gridder.difficulty<=50) {
@@ -346,6 +347,7 @@ gridder = {
 		} else {
 			temp = gridder.strings.getString("gridsidebar.unsolvable");
 		}
+		*/
 		gridder.doc.getElementById("info_dif").innerHTML = temp;
 
 	}, // End of start_grid
@@ -728,7 +730,7 @@ gridder = {
 	}, // End of check_integrity
 	finished: function() {
 		gridder.doc.getElementById("completed").style.visibility = "visible";
-		griddb.clear_grid(gridder.get_givens());
+		sudoku.clear_grid(gridder.get_givens());
 		gridder.notify_sidebar();
 	}, // End of finished
 	notify_sidebar: function() {
@@ -761,7 +763,7 @@ gridder = {
 		var out = gridder.get_givens();
 		if (gridder.difficulty<0) {
 			if (dbug) console.log("Clearing unsolvable grid");
-			griddb.clear_grid(out);
+			sudoku.clear_grid(out);
 			return;
 		}
 		if (!gridder.timer_on) {
@@ -770,7 +772,7 @@ gridder = {
 		}
 		if (dbug) console.log("Smartsave Gathering.");
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
-		griddb.save_grid(out, data);
+		sudoku.add_grid(out, data);
 		//gridder.notify_sidebar();	// I don't tink we need to do this.  Okay, what this does is if the sidebar is still open, it updates the contents.  Maybe we need to do this, but let's take care of the saving first.
 	}, // End of smart_save
 	push: function() {
@@ -873,7 +875,7 @@ gridder = {
 	generate: function() {
 		var s = new SOLVER();
 		var difficulty = 10;
-		if (sudoku.options["allowHard"] === true)) {
+		if (sudoku.options["allowHard"] === true) {
 			difficulty = 70;
 		}
 		

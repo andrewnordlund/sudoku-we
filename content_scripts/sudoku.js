@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		gridder.generate(supplied_grid);
 	}
 }, false);
-document.addEventListener("unload", function () {
+window.addEventListener("beforeunload", function () {
+	console.log ("Unloading and then saving....");
 	gridder.smart_save();
 }, false);
 
