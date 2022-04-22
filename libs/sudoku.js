@@ -88,6 +88,28 @@ sudoku = {
 		}
 		return returnValue;
 	}, // End of countObjs
+	observe: function(callback) {
+			 // Oh frig; this should go in a background script!
+		browser.storage.onChanged.addListener(/*callback*/  function (changes, area) {console.log ("storage was updated");});
+	}, // End of observe
+	checkStorageChange : function (changes, area) {
+		if (sudoku.dbug) console.log("Change in storage area: " + area);
+
+		let changedItems = Object.keys(changes);
+
+		for (let item of changedItems) {
+			if (item == "options") sudoku.loadOptions(function () {gridder.loadprefs();gridder.check_integrity();}, sudoku.errorFun);
+			if (item == "savedGrids") { /* do stuff */ }
+			/*
+			console.log(item + " has changed:");
+			console.log("Old value: ");
+			console.log(changes[item].oldValue);
+			console.log("New value: ");
+			console.log(changes[item].newValue);
+			*/
+		}
+	}, // End of checkStorageChange
+
 }
 
 // Taken from griddb.js

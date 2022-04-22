@@ -165,10 +165,10 @@ gridder = {
 			gridder.hl_errors = gridder.prefs.getBoolPref("hlerrors");
 		}
 		*/
-		browser.storage.onChanged.addListener(gridder.checkStorageChange);
+		browser.storage.onChanged.addListener(/*gridder.checkStorageChange*/  function () {console.log ("storage was updated");});
 		//gridder.check_integrity();
 	}, // End of observe
-	logStorageChange : function (changes, area) {
+	checkStorageChange : function (changes, area) {
 		console.log("Change in storage area: " + area);
 
 		let changedItems = Object.keys(changes);
@@ -183,7 +183,8 @@ gridder = {
 			console.log(changes[item].newValue);
 			*/
 		}
-	},
+		gridder.check_integrity();
+	}, // End of checkStorageChange
 	init_opera: function() {
 		gridder.alert_cell = function(r, c, state) {
 			if (-1==gridder.doc.getElementById("cb" + r + c).className.indexOf("hard")) {
@@ -267,6 +268,7 @@ gridder = {
 
 	      if (dbug) console.log ("gridder::Finished Initting!");
 		gridder.init_ui();
+		sudoku.observe(gridder.checkStorageChange);
 	}, // End of init
 	restart: function() {
 		var i = 0;
