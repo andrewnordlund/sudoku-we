@@ -5,6 +5,7 @@ console.log ("Loading sudoku.js");
 
 sudoku = {
 	dbug : true,
+	thePage : "/content_scripts/sudoku.html",
 	options : {
 		"allowHard" : false,
 		"showTooltips" : true,
@@ -24,6 +25,7 @@ sudoku = {
 		var getting = browser.storage.local.get("options");
 		getting.then(function (savedObj) {
 			if (sudoku.dbug) console.log ("Got stored options.")
+			if (savedObj.hasOwnProperty("options")) savedObj = savedObj["options"];
 
 			for (var opt in sudoku.options) {
 				if (savedObj.hasOwnProperty(opt)) {
@@ -88,28 +90,6 @@ sudoku = {
 		}
 		return returnValue;
 	}, // End of countObjs
-	observe: function(callback) {
-			 // Oh frig; this should go in a background script!
-		browser.storage.onChanged.addListener(/*callback*/  function (changes, area) {console.log ("storage was updated");});
-	}, // End of observe
-	checkStorageChange : function (changes, area) {
-		if (sudoku.dbug) console.log("Change in storage area: " + area);
-
-		let changedItems = Object.keys(changes);
-
-		for (let item of changedItems) {
-			if (item == "options") sudoku.loadOptions(function () {gridder.loadprefs();gridder.check_integrity();}, sudoku.errorFun);
-			if (item == "savedGrids") { /* do stuff */ }
-			/*
-			console.log(item + " has changed:");
-			console.log("Old value: ");
-			console.log(changes[item].oldValue);
-			console.log("New value: ");
-			console.log(changes[item].newValue);
-			*/
-		}
-	}, // End of checkStorageChange
-
 }
 
 // Taken from griddb.js

@@ -50,6 +50,17 @@ sudokuOpts = {
 
 		browser.storage.local.set({"options": sudoku.options}).then(function () { if (sudoku.options["dbug"]) console.log ("Options Saved!");}, sudoku.errorFun);
 
+		console.log ("Gonna try to send new options to the " + sudoku.thePage + " pages.");
+		browser.tabs.query({url:"moz-extension://*" + sudoku.thePage + "*"}).then(function (tabs) {
+				    //  moz-extension://7b9475d5-3135-47bb-8d8f-ca27fb4f1745/sidebar/c
+			if (tabs.length > 0) {
+				for (let i = 0; i < tabs.length; i++) {
+					browser.tabs.sendMessage(tabs[i].id, {"msg":"updateOptions", "options":sudoku.options});
+				}
+			} else { console.log ("Not sending options.");}
+		});
+
+
 		//  Not sure if we need this.....Take it out for now.  Put it in later if needs be
 		//browser.runtime.sendMessage({"task" : "updateOptions", "options" : sudoku.options});
 	}, // End of saveOptions

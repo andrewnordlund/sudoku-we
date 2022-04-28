@@ -22,6 +22,15 @@ sudokuCS = {
 	handleRightMouse : function (e) {
 		e.preventDefault();
 	}, // End of handleRightMouse
+	listener : function (message, sender, sendMessage) {
+		if (message.msg == "updateOptions") {
+			console.log ("Updating options in CS");
+			sudokuCS.dbug = message["options"]["dbug"];
+			sudoku.options = message["options"];
+			gridder.loadprefs();
+			gridder.check_integrity();
+		}
+	}, // End of listener
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -54,5 +63,7 @@ window.addEventListener("beforeunload", function () {
 	console.log ("Unloading and then saving....");
 	gridder.smart_save();
 }, false);
+
+browser.runtime.onMessage.addListener(sudokuCS.listener)
 
 sudokuCS.init();

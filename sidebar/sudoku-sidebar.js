@@ -4,7 +4,6 @@ if (typeof (sudokuSB) == "undefined") {
 
 sudokuSB = {
 	dbug : sudoku.dbug,
-	thePage : "/content_scripts/sudoku.html",
 	controls : {
 		"newPuzzleBtn" : null,
 		"optionsBtn" : null,
@@ -20,7 +19,7 @@ sudokuSB = {
 
 		}
 		sudoku.load_grids(sudokuSB.populateUnfinishedList);
-		sudoku.observe(/*sudokuSB.populateUnfinishedList*/ function () {console.log ("storage was updated");});
+		//sudoku.observe(/*sudokuSB.populateUnfinishedList*/ function () {console.log ("storage was updated");});
 	}, // End of init
 
 	newPuzzle : function () {
@@ -30,11 +29,11 @@ sudokuSB = {
 
 	openPage : function (page) {
 		var sudokuTab = null;
-		browser.tabs.query({url:"moz-extension://*" + sudokuSB.thePage + page}).then(function (tabs) {
+		browser.tabs.query({url:"moz-extension://*" + sudoku.thePage + page}).then(function (tabs) {
 				    //  moz-extension://7b9475d5-3135-47bb-8d8f-ca27fb4f1745/sidebar/c
 			if (tabs.length == 0) {
 				if (sudokuSB.dbug) console.log ("It's not already open.  Go ahead and open it now.");
-				browser.tabs.create({url: sudokuSB.thePage + page});
+				browser.tabs.create({url: sudoku.thePage + page});
 			} else {
 				if (sudokuSB.dbug) console.log ("It's already open in tab " + tabs[0].id + " in window " + tabs[0].windowId + ".  Gotta find which tab in which window.");
 				// Gotta figure out how to activate the tab

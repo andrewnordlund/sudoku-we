@@ -138,6 +138,7 @@ gridder = {
 		gridder.notify_sidebar = function() { };
 	}, // End of init_gecko
 	loadprefs: function() {
+		// Okay...so where's allowHard here?
 		gridder.show_hl_tips = sudoku.options["showTooltips"];
 		gridder.hl_cross = sudoku.options["hightlightRowCol"];
 		gridder.hl_errors = sudoku.options["highlightWrongNumbers"];
@@ -148,6 +149,7 @@ gridder = {
 		try { gridder.hl_errors = gridder.prefs.getBoolPref("hlerrors"); } catch (e) { }
 		*/
 		document.getElementById("grid").className = gridder.hl_cross ? "g hv" : "g";
+		console.log ("Options are now: showTooltips: " + gridder.show_hl_tips + ", hl_cross: " + gridder.hl_cross + ", hl_errors: " + gridder.hl_errors + ", dbug: " + dbug + ".");
 	}, // End of loadprefs
 	observe: function(subject, topic, data) {
 			 /*
@@ -242,6 +244,7 @@ gridder = {
 	}, // End of init_gears
 	init: function() {
 		if (dbug) console.log ("gidder::Initting!");
+		gridder.loadprefs();
 		gridder.find_css();
 		gridder.cache = [
 			[ 0,0,0,0,0,0,0,0,0 ],
@@ -268,7 +271,7 @@ gridder = {
 
 	      if (dbug) console.log ("gridder::Finished Initting!");
 		gridder.init_ui();
-		sudoku.observe(gridder.checkStorageChange);
+		//sudoku.observe(gridder.checkStorageChange);
 	}, // End of init
 	restart: function() {
 		var i = 0;
@@ -320,7 +323,7 @@ gridder = {
 				gridder.difficulty = setup[4];
 			}
 		}
-		if (null==gridder.difficulty) {
+		if (gridder.difficulty == null) {
 			var s = new SOLVER();
 			s.init(gridder.cache, 1);
 			while (s.step(1)) {
@@ -338,7 +341,7 @@ gridder = {
 			}
 		}
 		if (dbug) console.log("gridder.difficulty:" + gridder.difficulty);
-		var temp = "Blah!";
+		var temp = "Blah!";	// This is where you need locale stuff
 		/*
 		if (gridder.difficulty>0 && gridder.difficulty<=30) {
 			temp = gridder.strings.getString("gridsidebar.easy");
@@ -405,12 +408,12 @@ gridder = {
 		for (r = 0;r<gridder.doc.styleSheets.length;r++) {
 			rules = gridder.doc.styleSheets[r].cssRules;
 			for (i = 0;i<rules.length;i++) {
-				if (3==rules[i].selectorText.length && rules[i].selectorText.substring(0, 2)==".c") {
+				if (rules[i].selectorText.length == 3 && rules[i].selectorText.substring(0, 2)==".c") {
 					var n = rules[i].selectorText.charCodeAt(2) - 48;
 					if (n>=0 && n<9) {
 						gridder.col_css_rules[n] = rules[i];
 					}
-				} else if (4==rules[i].selectorText.length && rules[i].selectorText.substring(0, 2)==".q") {
+				} else if (rules[i].selectorText.length == 4 && rules[i].selectorText.substring(0, 2)==".q") {
 					var c = rules[i].selectorText.charCodeAt(2) - 48;
 					var r = rules[i].selectorText.charCodeAt(3) - 48;
 					if (c>=0 && c<3 && r>=0 && r<3) {
@@ -478,7 +481,7 @@ gridder = {
 			// function with an empty one if the highlighting is off
 			return ;
 		}
-		if (null!=gridder.col_css_rules[column]) {
+		if (gridder.col_css_rules[column] != null) {
 			gridder.col_css_rules[column].style.background = hl ? "#E0FFFF" : "none";
 		}
 	}, // End of hilight_column
@@ -522,6 +525,7 @@ gridder = {
 		}
 	}, // End of set_hint_string
 	get_hl_tips: function() {
+		console.log ("show_hl_tips: " + gridder.show_hl_tips +", and sudoku.options[\"showTooltips\"]: " + sudoku.options["showTooltips"] +".");
 		if (!gridder.show_hl_tips) {
 			return ;
 		}
@@ -555,7 +559,7 @@ gridder = {
 		if (-1!=gridder.hl_col && -1!=gridder.hl_row) {
 			gridder.hilight_square(gridder.hl_col, gridder.hl_row, 0)
 		}
-		if (-1!=gridder.hl_col) {
+		if (gridder.hl_col != -1) {
 			gridder.hilight_column(gridder.hl_col, 0);
 		}
 		gridder.hl_col = gridder.hl_row = -1;

@@ -8,7 +8,7 @@ sudokuBG = {
 	thePage : "content_scripts/sudoku.html",
 	init : function () {
 		//sudokuBG.dbug = true; //nordburg.getBoolPref("extensions.sudokuBG.", "dbug");
-		sudokuBG.run();
+		//sudokuBG.observe(); //run();	// Let's see if we can do this more manually.
 	}, // End of init
 	run : function () {
 		if (sudokuBG.dbug) console.log ("running.");
@@ -30,6 +30,12 @@ sudokuBG = {
 	errorFun : function () {
 		console.log ("there was an error");
 	}, // End of errorFun
+	observe: function() {
+			 // Oh frig; this should go in a background script!
+		browser.storage.onChanged.addListener(/*callback*/  function (changes, area) {
+			console.log ("storage was updated");
+		});
+	}, // End of observe
 }
 
 browser.browserAction.onClicked.addListener(sudokuBG.init);
