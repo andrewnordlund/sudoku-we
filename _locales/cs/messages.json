@@ -1,0 +1,171 @@
+{
+	"extensionDescription": {
+		"message": "Hrajte SUDOKU ve Firefoxu",
+		"description": "Description of the extension."
+	},
+	"playBtn": {
+		"message": "Hrát!",
+		"description" : "Play button text"
+	},
+	"puzzlefound": {
+		"message": "SUDOKU bylo nalezeno na této stránce",
+		"description": "When the extension is run on another webpage with a sudoku puzzle."
+	},
+	"unrated": {
+		"message": "Nehodnocené",
+		"description": "No difficulty rating."
+	},
+	"easy": {
+		"message": "Snadné",
+		"description": "Difficulty rating of easy"
+	},
+	"medium": {
+		"message": "Střední",
+		"description": "Difficulty rating of medium."
+	},
+	"hard": {
+		"message": "Těžké",
+		"description": "Difficulty rating of hard."
+	},
+	"unsolvable": {
+		"message": "Neřešitelné",
+		"description": "Unsolvable puzzle."
+	},
+	"mark": {
+		"message": "Značka",
+		"description": "Set a mark so if you make a mistake later, you can always come back here."
+	},
+	"dateformat": {
+		"message": "%d.%m.%y %H:%M:%S",
+		"description": "Date format"
+	},
+	"completed": {
+		"message": "Hotovo!!!",
+		"description": "When the puzzle is complete"
+	},
+	"time": {
+		"message": "Čas:",
+		"description": "Time it took to compete the puzzle."
+	},
+	"difficulty": {
+		"message": "Obtížnost:",
+		"description": "Diffifulty label"
+	},
+	"solve": {
+		"message": "VYŘEŠIT",
+		"description": "Solve button label."
+	},
+	"mark": {
+		"message": "ZNAČKA",
+		"description": "Mark button label."
+	},
+	"gen": {
+		"message": "NOVÉ",
+		"description": "Generate button label."
+	},
+	"restart": {
+		"message": "ZAČÍT ZNOVU",
+		"description": "Restart button label."
+	},
+	"localizedMenuitem": {
+		"message": "Your localized menuitem",
+		"description": "Menu item label."
+	},
+	"toolbarBtn": {
+		"message": "Your Toolbar Button",
+		"description": "Toolbar button label."
+	},
+	"tooltip": {
+		"message": "This is your toolbar button!",
+		"description": "Toolbar button tooltip"
+	},
+	"nextTip": {
+		"message": "Další tip",
+		"description": "Next tip label?"
+	},
+	"initialTip": {
+		"message": "Po stisknutí Ctrl+Shift+S se zobrazí SUDOKU sidebar.",
+		"description": "Instructions for keystroke to open the sidebar."
+	},
+	"commandkey": {
+		"message": "S",
+		"description": "The command key to open the sidebar."
+	},
+	"modifierskey": {
+		"message": "shift accel",
+		"description": "The modifier keys used to open the sidebar."
+	},
+	"title": {
+		"message": "SUDOKU",
+		"description": "Title of page."
+	},
+	"toggleTooltip": {
+		"message": "Zobrazí/skryje postraní lištu SUDOKU",
+		"description": "Toggle toolbar label."
+	},
+	"besttime": {
+		"message": "Nejlepší",
+		"description": "Best time label."
+	},
+	"play": {
+		"message": "Hrát",
+		"description": "Play label."
+	},
+	"view": {
+		"message": "Zobrazit",
+		"description": "View label."
+	},
+	"newMedium": {
+		"message": "Nové střední SUDOKU",
+		"description": "New medium puzzle label."
+	},
+	"newHard": {
+		"message": "Nové těžké SUDOKU",
+		"description": "New hard puzzle label."
+	},
+	"new": {
+		"message": "Nové SUDOKU",
+		"description": "New puzzle button label."
+	},
+	"timer": {
+		"message": "Čas:",
+		"description": "Timer label label."
+	},
+	"sudokuOptions": {
+		"message": "Předvolby Sudoku",
+		"description": "Sudoku options label."
+	},
+	"main": {
+		"message": "Hlavní",
+		"description": "Main label."
+	},
+	"display": {
+		"message": "Zobrazení",
+		"description": "Display options label."
+	},
+	"hinttips": {
+		"message": "Zobrazit tooltipy s možnostmi",
+		"description": "Show hints option label."
+	},
+	"hlcross": {
+		"message": "Zvýraznit řádek a sloupec pod kurzorem",
+		"description": "Highlight row and column option label."
+	},
+	"hlerrors": {
+		"message": "Zvýraznit chybně umístěná čísla",
+		"description": "Highlight wrong placed numbers option label."
+	},
+	"input": {
+		"message": "Možnosti ovládání",
+		"description": "Input options label."
+	},
+	"engine": {
+		"message": "Hlavní nastavení",
+		"description": "Main settings label."
+	},
+	"allowhard": {
+		"message": "Povolit těžká",
+		"description": "Allow hard checkbox label."
+	}
+
+}

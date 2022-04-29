@@ -1,0 +1,170 @@
+{
+	"extensionDescription": {
+		"message": "Play SUDOKU in Firefox",
+		"description": "Description of the extension."
+	},
+	"playBtn": {
+		"message": "Play!",
+		"description" : "Play button text"
+	},
+	"puzzlefound": {
+		"message": "A SUDOKU Puzzle was detected on the page",
+		"description": "When the extension is run on another webpage with a sudoku puzzle."
+	},
+	"unrated": {
+		"message": "Not Rated",
+		"description": "No difficulty rating."
+	},
+	"easy": {
+		"message": "Easy",
+		"description": "Difficulty rating of easy"
+	},
+	"medium": {
+		"message": "Medium",
+		"description": "Difficulty rating of medium."
+	},
+	"hard": {
+		"message": "Hard",
+		"description": "Difficulty rating of hard."
+	},
+	"unsolvable": {
+		"message": "Unsolvable",
+		"description": "Unsolvable puzzle."
+	},
+	"mark": {
+		"message": "Mark",
+		"description": "Set a mark so if you make a mistake later, you can always come back here."
+	},
+	"dateformat": {
+		"message": "%y/%m/%d %H:%M:%S",
+		"description": "Date format"
+	},
+	"completed": {
+		"message": "Completed",
+		"description": "When the puzzle is complete"
+	},
+	"time": {
+		"message": "Time:",
+		"description": "Time it took to compete the puzzle."
+	},
+	"difficulty": {
+		"message": "Difficulty:",
+		"description": "Diffifulty label"
+	},
+	"solve": {
+		"message": "SOLVE",
+		"description": "Solve button label."
+	},
+	"mark": {
+		"message": "MARK",
+		"description": "Mark button label."
+	},
+	"gen": {
+		"message": "GENERATE",
+		"description": "Generate button label."
+	},
+	"restart": {
+		"message": "RESTART",
+		"description": "Restart button label."
+	},
+	"localizedMenuitem": {
+		"message": "Your localized menuitem",
+		"description": "Menu item label."
+	},
+	"toolbarBtn": {
+		"message": "Your Toolbar Button",
+		"description": "Toolbar button label."
+	},
+	"tooltip": {
+		"message": "This is your toolbar button!",
+		"description": "Toolbar button tooltip"
+	},
+	"nextTip": {
+		"message": "Next Tip",
+		"description": "Next tip label?"
+	},
+	"initialTip": {
+		"message": "Press Ctrl+Shift+S for SUDOKU sidebar.",
+		"description": "Instructions for keystroke to open the sidebar."
+	},
+	"commandkey": {
+		"message": "S",
+		"description": "The command key to open the sidebar."
+	},
+	"modifierskey": {
+		"message": "shift accel",
+		"description": "The modifier keys used to open the sidebar."
+	},
+	"title": {
+		"message": "SUDOKU",
+		"description": "Title of page."
+	},
+	"toggleTooltip": {
+		"message": "Toggle SUDOKU sidebar",
+		"description": "Toggle toolbar label."
+	},
+	"besttime": {
+		"message": "Best",
+		"description": "Best time label."
+	},
+	"play": {
+		"message": "Play",
+		"description": "Play label."
+	},
+	"view": {
+		"message": "View",
+		"description": "View label."
+	},
+	"newMedium": {
+		"message": "New Medium Puzzle",
+		"description": "New medium puzzle label."
+	},
+	"newHard": {
+		"message": "New Hard Puzzle",
+		"description": "New hard puzzle label."
+	},
+	"new": {
+		"message": "New Puzzle",
+		"description": "New puzzle button label."
+	},
+	"timer": {
+		"message": "Timer:",
+		"description": "Timer label label."
+	},
+	"sudokuOptions": {
+		"message": "Sudoku Options",
+		"description": "Sudoku options label."
+	},
+	"main": {
+		"message": "Main",
+		"description": "Main label."
+	},
+	"display": {
+		"message": "Display Options",
+		"description": "Display options label."
+	},
+	"hinttips": {
+		"message": "Show tooltips with hints",
+		"description": "Show hints option label."
+	},
+	"hlcross": {
+		"message": "Highlight the row and column under the mouse cursor",
+		"description": "Highlight row and column option label."
+	},
+	"hlerrors": {
+		"message": "Highlight wrongly placed numbers",
+		"description": "Highlight wrong placed numbers option label."
+	},
+	"input": {
+		"message": "Input Options",
+		"description": "Input options label."
+	},
+	"engine": {
+		"message": "Main settings",
+		"description": "Main settings label."
+	},
+	"allowhard": {
+		"message": "Allow Hard",
+		"description": "Allow hard checkbox label."
+	}
+}

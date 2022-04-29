@@ -77,7 +77,11 @@ sudokuSB = {
 	}, // End of populateUnfinishedList
 	listener : function (data, sender) {
 		console.log ("got a message: " + data.msg);
-		if (data.msg == "reload") sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);
+		if (data.msg == "reload") {
+			sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);
+		} else if (data.msg == "saveAndReload") {
+			sudoku.add_grid(data.givens, data);
+		}
 	}, // End of listener
 }
 
