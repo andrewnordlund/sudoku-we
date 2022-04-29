@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		}, sudoku.errorFun);
 		//gridder.start_grid(supplied_grid);	// This is for a loaded grid
 	} else {
-		gridder.generate(supplied_grid);	// This is to generate a random grid
+		sudoku.load_grids().then(function () {
+			gridder.generate(supplied_grid);	// This is to generate a random grid
+		}, sudoku.errorFun);
 	}
 }, false);
 window.addEventListener("beforeunload", function () {

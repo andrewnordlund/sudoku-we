@@ -327,6 +327,7 @@ gridder = {
 				gridder.difficulty = setup[4];
 			}
 		}
+		if (dbug) console.log ("gridder:start_grid::difficulty: " + gridder.difficulty + ".");
 		if (gridder.difficulty == null) {
 			var s = new SOLVER();
 			s.init(gridder.cache, 1);
@@ -344,7 +345,7 @@ gridder = {
 				gridder.difficulty = -1;
 			}
 		}
-		if (dbug) console.log("gridder.difficulty:" + gridder.difficulty);
+		if (dbug) console.log("gridder::gridder.difficulty:" + gridder.difficulty);
 		var temp = "Blah!";	// This is where you need locale stuff
 		/*
 		if (gridder.difficulty>0 && gridder.difficulty<=30) {
@@ -775,7 +776,7 @@ gridder = {
 	smart_save: function() {
 		var out = gridder.get_givens();
 		if (gridder.difficulty<0) {
-			if (dbug) console.log("Clearing unsolvable grid");
+			if (dbug) console.log("Clearing unsolvable grid, and for somereason not saving.");
 			sudoku.clear_grid(out);
 			return;
 		}
@@ -784,6 +785,8 @@ gridder = {
 			return ;
 		}
 		if (dbug) console.log("Smartsave Gathering.");
+		console.log ("smart_save: We have" + sudoku.countObjs(sudoku.loadedGrids) + " grids previously saved.");
+
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
 		sudoku.add_grid(out, data).then(gridder.notify_sidebar, sudoku.errorFun);
 		//gridder.notify_sidebar();	// I don't tink we need to do this.  Okay, what this does is if the sidebar is still open, it updates the contents.  Maybe we need to do this, but let's take care of the saving first.
@@ -888,6 +891,7 @@ gridder = {
 	generate: function() {
 		var s = new SOLVER();
 		var difficulty = 10;
+		console.log ("AllowHard: " + sudoku.options["allowHard"]);
 		if (sudoku.options["allowHard"] === true) {
 			difficulty = 70;
 		}

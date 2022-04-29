@@ -51,7 +51,8 @@ sudokuSB = {
 
 
 	populateUnfinishedList : function () {
-		if (sudokuSB.dbug) console.log ("populateUnfinishedList::Gonna refresh sidebar now with  " + sudoku.countObjs(sudoku.loadedGrids) + " grids.");
+		//if (sudokuSB.dbug) 
+		console.log ("populateUnfinishedList::Gonna refresh sidebar now with  " + sudoku.countObjs(sudoku.loadedGrids) + " grids.");
 		if (sudoku.countObjs(sudoku.loadedGrids) > 0) {
 			listHolder.innerHTML = "";
 			let ol = document.createElement("ol");
@@ -76,7 +77,7 @@ sudokuSB = {
 	}, // End of populateUnfinishedList
 	listener : function (data, sender) {
 		console.log ("got a message: " + data.msg);
-		if (data.msg == "reload") sudoku.load_grids(sudokuSB.populateUnfinishedList);
+		if (data.msg == "reload") sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);
 	}, // End of listener
 }
 

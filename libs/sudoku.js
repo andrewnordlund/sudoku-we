@@ -60,7 +60,9 @@ sudoku = {
 	}, // End of errorFun
 	add_grid : function(givens, data) {
 		let dt = new Date();
+		console.log ("add_grid: We have" + sudoku.countObjs(sudoku.loadedGrids) + " grids previously saved.");
 		sudoku.loadedGrids[givens] = {"givens" : givens, "date" : dt, "data" : data};
+		console.log ("add_grid: We now have" + sudoku.countObjs(sudoku.loadedGrids) + " grids being saved.");
 		return sudoku.save_grids();
 	}, // End of add_grid
 	save_grids () {
@@ -73,11 +75,14 @@ sudoku = {
 		}
 	}, // End of save_grids
 	load_grids : function () {
+		if (sudoku.dbug) console.log ("load_grids::loding grids");
 		let savedObjP = browser.storage.local.get("savedGrids");
 		savedObjP.then (function (savedObj) {
 			if (savedObj.hasOwnProperty("savedGrids")) savedObj = savedObj["savedGrids"];
 			sudoku.loadedGrids = savedObj;
+			if (sudoku.dbug) console.log ("load_grids::We now have " + sudoku.countObjs(sudoku.loadedGrids) + " loaded grids.");
 		}, sudoku.errorFun);
+			if (sudoku.dbug) console.log ("load_grids::returning savedObjP.");
 			return savedObjP;
 	}, // End of load_grid
 	load_grid : function (givens) {
@@ -85,9 +90,8 @@ sudoku = {
 	}, // End of load_grid
 	clear_grid: function(givens) {
 		if (sudoku.loadedGrids.hasOwnProperty(givens)) {
-			delete sudoku.loadedGrids[givens];
+			delete sudoku.loadedGrids[givens];	// Ahhh. this function gets called a lot, but this _part_ should only be done when you've finished a puzzle!....except this is here in the original function, okay so leave it....it also happens with an unsolvable puzzle
 			let saved = sudoku.save_grids();
-			return saved;
 		}
 	}, // End of clear_grid
 	countObjs : function (obj) {
