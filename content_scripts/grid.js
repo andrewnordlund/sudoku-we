@@ -35,6 +35,7 @@ gridder = {
 	grid: 		null,
 	difficulty:	null,
 	counts:		[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+	setup :		null,
 	key: function(keyCode) {
 		if (keyCode>=96 && keyCode<=105) {
 			keyCode-= 48;
@@ -149,7 +150,7 @@ gridder = {
 		try { gridder.hl_errors = gridder.prefs.getBoolPref("hlerrors"); } catch (e) { }
 		*/
 		document.getElementById("grid").className = gridder.hl_cross ? "g hv" : "g";
-		console.log ("Options are now: showTooltips: " + gridder.show_hl_tips + ", hl_cross: " + gridder.hl_cross + ", hl_errors: " + gridder.hl_errors + ", dbug: " + dbug + ".");
+		//console.log ("Options are now: showTooltips: " + gridder.show_hl_tips + ", hl_cross: " + gridder.hl_cross + ", hl_errors: " + gridder.hl_errors + ", dbug: " + dbug + ".");
 	}, // End of loadprefs
 	observe: function(subject, topic, data) {
 			 /*
@@ -244,6 +245,7 @@ gridder = {
 	}, // End of init_gears
 	init: function() {
 		if (dbug) console.log ("gidder::Initting!");
+		gridder.setup = null;
 		gridder.loadprefs();
 		gridder.find_css();
 		gridder.cache = [
@@ -269,7 +271,7 @@ gridder = {
 		gridder.timer_on = 0;
 		gridder.timer = setInterval(gridder.watch, 1000);
 
-	      if (dbug) console.log ("gridder::Finished Initting!");
+	      if (dbug) console.log ("gridder::Finished Initting!  Now gonna init_ui to add event handlers.");
 		gridder.init_ui();
 		//sudoku.observe(gridder.checkStorageChange);
 	}, // End of init
@@ -304,8 +306,10 @@ gridder = {
 		gridder.doc.getElementById("completed").style.visibility = "hidden";
 
 		gridder.difficulty = null;
-		var setup = sudoku.load_grid(data);
-		if (null!=setup) {
+
+		var setup = gridder.setup;  // sudoku.load_grid(data);
+
+		if (setup != null) {
 			var i;
 			gridder.cache = setup[0];
 			gridder.hints = setup[1];
@@ -781,7 +785,7 @@ gridder = {
 		}
 		if (dbug) console.log("Smartsave Gathering.");
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
-		sudoku.add_grid(out, data);
+		sudoku.add_grid(out, data).then(gridder.notify_sidebar, sudoku.errorFun);
 		//gridder.notify_sidebar();	// I don't tink we need to do this.  Okay, what this does is if the sidebar is still open, it updates the contents.  Maybe we need to do this, but let's take care of the saving first.
 	}, // End of smart_save
 	push: function() {

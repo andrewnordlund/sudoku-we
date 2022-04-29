@@ -18,7 +18,7 @@ sudokuSB = {
 			if (control == "listHolder") sudokuSB.controls[control].innerHTML = "<p> - </p>";
 
 		}
-		sudoku.load_grids(sudokuSB.populateUnfinishedList);
+		sudoku.load_grids().then (sudokuSB.populateUnfinishedList, sudoku.errorFun);
 		//sudoku.observe(/*sudokuSB.populateUnfinishedList*/ function () {console.log ("storage was updated");});
 	}, // End of init
 
@@ -51,6 +51,7 @@ sudokuSB = {
 
 
 	populateUnfinishedList : function () {
+		if (sudokuSB.dbug) console.log ("populateUnfinishedList::Gonna refresh sidebar now with  " + sudoku.countObjs(sudoku.loadedGrids) + " grids.");
 		if (sudoku.countObjs(sudoku.loadedGrids) > 0) {
 			listHolder.innerHTML = "";
 			let ol = document.createElement("ol");
@@ -69,6 +70,8 @@ sudokuSB = {
 					}, false);
 				li.appendChild(a);
 			}
+		} else {
+			if (sudokuSB.dbug) console.log ("populateUnfinishedList::Nothing to list.");
 		}
 	}, // End of populateUnfinishedList
 	listener : function (data, sender) {

@@ -50,11 +50,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	gridder.doc = document;
 	//gridder.init_ff3ext();
 	console.log ("About to call gridder.init();");
-	gridder.init();
+	gridder.init();	// Sets everything to 0, or square 1, as it were; and adds event handlers.
 	if (supplied_grid_type == "data") {
-		gridder.start_grid(supplied_grid);
+		sudoku.load_grids().then(function () {
+			gridder.setup = sudoku.loadedGrids[supplied_grid]["data"];
+			gridder.start_grid(supplied_grid);
+		}, sudoku.errorFun);
+		//gridder.start_grid(supplied_grid);	// This is for a loaded grid
 	} else {
-		gridder.generate(supplied_grid);
+		gridder.generate(supplied_grid);	// This is to generate a random grid
 	}
 }, false);
 window.addEventListener("beforeunload", function () {

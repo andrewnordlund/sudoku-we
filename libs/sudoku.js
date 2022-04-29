@@ -61,7 +61,7 @@ sudoku = {
 	add_grid : function(givens, data) {
 		let dt = new Date();
 		sudoku.loadedGrids[givens] = {"givens" : givens, "date" : dt, "data" : data};
-		sudoku.save_grids();
+		return sudoku.save_grids();
 	}, // End of add_grid
 	save_grids () {
 		try {
@@ -72,16 +72,16 @@ sudoku = {
 			consol.error ("error whilst saving grids: " + ex.message);
 		}
 	}, // End of save_grids
-	load_grids : function (callback) {
-		let savedObj = browser.storage.local.get("savedGrids");
-		savedObj.then (function (savedObj) {
+	load_grids : function () {
+		let savedObjP = browser.storage.local.get("savedGrids");
+		savedObjP.then (function (savedObj) {
 			if (savedObj.hasOwnProperty("savedGrids")) savedObj = savedObj["savedGrids"];
 			sudoku.loadedGrids = savedObj;
-			callback();
 		}, sudoku.errorFun);
+			return savedObjP;
 	}, // End of load_grid
 	load_grid : function (givens) {
-		sudoku.load_grids(function (grids) {}, sudoku.errorFun);
+		sudoku.load_grids().then (null, sudoku.errorFun);
 	}, // End of load_grid
 	clear_grid: function(givens) {
 		if (sudoku.loadedGrids.hasOwnProperty(givens)) {
