@@ -17,6 +17,7 @@ sudokuOpts = {
 		for (var control in sudokuOpts.controls) {
 			sudokuOpts.controls[control] = document.getElementById(control);
 			if (control.match(/Chk/)) sudokuOpts.controls[control].addEventListener("click", sudokuOpts.saveOptions, false);
+			// crud.  Should prolly do some 118n here.  But I'm soooo lazy
 		}
 		sudoku.addToPostLoad([sudokuOpts.fillValues]);
 

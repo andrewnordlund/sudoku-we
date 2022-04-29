@@ -13,9 +13,17 @@ sudokuSB = {
 	init : function () {
 		for (let control in sudokuSB.controls) {
 			sudokuSB.controls[control] = document.getElementById(control);
-			if (control == "newPuzzleBtn") sudokuSB.controls[control].addEventListener("click", sudokuSB.newPuzzle, false);
-			if (control == "optionsBtn") sudokuSB.controls[control].addEventListener("click", sudokuSB.openOptionsPage, false);
-			if (control == "listHolder") sudokuSB.controls[control].innerHTML = "<p> - </p>";
+			if (control == "newPuzzleBtn") {
+				sudokuSB.controls[control].addEventListener("click", sudokuSB.newPuzzle, false);
+				sudokuSB.controls[control].innerHTML = browser.i18n.getMessage("new");
+			}
+			if (control == "optionsBtn") {
+				sudokuSB.controls[control].addEventListener("click", sudokuSB.openOptionsPage, false);
+				sudokuSB.controls[control].innerHTML = browser.i18n.getMessage("sudokuOptions");
+			}
+			if (control == "listHolder") {
+				sudokuSB.controls[control].innerHTML = "<p> - </p>";
+			}
 
 		}
 		sudoku.load_grids().then (sudokuSB.populateUnfinishedList, sudoku.errorFun);
@@ -52,7 +60,6 @@ sudokuSB = {
 
 	populateUnfinishedList : function () {
 		//if (sudokuSB.dbug) 
-		console.log ("populateUnfinishedList::Gonna refresh sidebar now with  " + sudoku.countObjs(sudoku.loadedGrids) + " grids.");
 		if (sudoku.countObjs(sudoku.loadedGrids) > 0) {
 			listHolder.innerHTML = "";
 			let ol = document.createElement("ol");
@@ -77,7 +84,6 @@ sudokuSB = {
 		}
 	}, // End of populateUnfinishedList
 	listener : function (data, sender) {
-		console.log ("got a message: " + data.msg);
 		if (data.msg == "reload") {
 			sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);
 		} else if (data.msg == "saveAndReload") {
