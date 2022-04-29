@@ -346,18 +346,18 @@ gridder = {
 			}
 		}
 		if (dbug) console.log("gridder::gridder.difficulty:" + gridder.difficulty);
-		var temp = "Blah!";	// This is where you need locale stuff
-		/*
+		var temp = "";	// This is where you need locale stuff
+		
 		if (gridder.difficulty>0 && gridder.difficulty<=30) {
-			temp = gridder.strings.getString("gridsidebar.easy");
+			temp = browser.i18n.getMessage("easy");
 		} else if (gridder.difficulty>30 && gridder.difficulty<=50) {
-			temp = gridder.strings.getString("gridsidebar.medium");
+			temp = browser.i18n.getMessage("medium");
 		} else if (gridder.difficulty>50) {
-			temp = gridder.strings.getString("gridsidebar.hard");
+			temp = browser.i18n.getMessage("hard");
 		} else {
-			temp = gridder.strings.getString("gridsidebar.unsolvable");
+			temp = browser.i18n.getMessage("unsolvable");
 		}
-		*/
+		
 		gridder.doc.getElementById("info_dif").innerHTML = temp;
 
 	}, // End of start_grid

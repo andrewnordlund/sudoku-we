@@ -63,7 +63,8 @@ sudokuSB = {
 				ol.appendChild(li);
 
 				let a = document.createElement("a");
-				a.textContent = sudoku.loadedGrids[grid]["date"];
+				a.textContent = sudokuSB.format_date(sudoku.loadedGrids[grid]["date"], browser.i18n.getMessage("dateformat"));
+
 				a.setAttribute("href", "?p=" + grid);
 				a.addEventListener("click", function (ev) {
 					ev.preventDefault();
@@ -83,6 +84,42 @@ sudokuSB = {
 			sudoku.add_grid(data.givens, data);
 		}
 	}, // End of listener
+	format_date : function (d, fmt, monthNames) {
+		var leftPad = function(n) {
+			n = "" + n;
+			return n.length == 1 ? "0" + n : n;
+		};
+    
+		var r = [];
+		var escape = false;
+		if (monthNames == null)	monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+		for (var i = 0; i < fmt.length; ++i) {
+			var c = fmt.charAt(i);
+	
+			if (escape) {
+			    switch (c) {
+			    case 'h': c = "" + d.getHours(); break;
+			    case 'H': c = leftPad(d.getHours()); break;
+			    case 'M': c = leftPad(d.getMinutes()); break;
+			    case 'S': c = leftPad(d.getSeconds()); break;
+			    case 'd': c = leftPad(d.getDate()); break;
+			    case 'm': c = leftPad(d.getMonth() + 1); break;
+			    case 'y': c = "" + d.getFullYear(); break;
+			    case 'b': c = "" + monthNames[d.getMonth()]; break;
+			    }
+	    			r.push(c);
+				escape = false;
+			} else {
+			    if (c == "%")
+				escape = true;
+			    else
+				r.push(c);
+			} // End of if escape
+		} // End of for
+		return r.join("");
+	}, // End of format_date
+
 }
 
 browser.runtime.onMessage.addListener(sudokuSB.listener)

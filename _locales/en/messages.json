@@ -36,11 +36,11 @@
 		"description": "Set a mark so if you make a mistake later, you can always come back here."
 	},
 	"dateformat": {
-		"message": "%y/%m/%d %H:%M:%S",
+		"message": "%y-%m-%d %H:%M:%S",
 		"description": "Date format"
 	},
 	"completed": {
-		"message": "Completed",
+		"message": "Completed!!!",
 		"description": "When the puzzle is complete"
 	},
 	"time": {
