@@ -525,7 +525,6 @@ gridder = {
 		}
 	}, // End of set_hint_string
 	get_hl_tips: function() {
-		console.log ("show_hl_tips: " + gridder.show_hl_tips +", and sudoku.options[\"showTooltips\"]: " + sudoku.options["showTooltips"] +".");
 		if (!gridder.show_hl_tips) {
 			return ;
 		}
@@ -729,17 +728,20 @@ gridder = {
 				}
 			}
 		}
-		if (0==empty_cells && 0==alert_count) {
+		if (empty_cells == 0 && alert_count == 0) {
 			gridder.stop_timer();
 			gridder.finished();
 		}
 	}, // End of check_integrity
 	finished: function() {
 		gridder.doc.getElementById("completed").style.visibility = "visible";
-		sudoku.clear_grid(gridder.get_givens());
-		gridder.notify_sidebar();
+		sudoku.clear_grid(gridder.get_givens()).then(gridder.notify_sidebar);
 	}, // End of finished
 	notify_sidebar: function() {
+		// Instead of the old-school way below, we'd better use the new-school way of calling the sidebar...
+		console.log ("Gonna try to notify the sidebar now.");
+		browser.runtime.sendMessage({"msg":"reload"});
+		/*
 		var browser = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
 		   .getInterface(Components.interfaces.nsIWebNavigation)
 		   .QueryInterface(Components.interfaces.nsIDocShellTreeItem)
@@ -750,6 +752,7 @@ gridder = {
 		if ("chrome://sudoku/content/gridsidebar.xul"==sidebarWindow.location.href) {
 			sidebarWindow.gridsb.grid_updated();
 		}
+		*/
 	}, // End of notify_sidebar
 	get_givens: function() {
 		var out = "";

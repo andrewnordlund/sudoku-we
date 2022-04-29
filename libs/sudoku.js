@@ -64,7 +64,13 @@ sudoku = {
 		sudoku.save_grids();
 	}, // End of add_grid
 	save_grids () {
-		let saved = browser.storage.local.set({"savedGrids" : sudoku.loadedGrids});
+		try {
+			let saved = browser.storage.local.set({"savedGrids" : sudoku.loadedGrids});
+			return saved;
+		}
+		catch (ex) {
+			consol.error ("error whilst saving grids: " + ex.message);
+		}
 	}, // End of save_grids
 	load_grids : function (callback) {
 		let savedObj = browser.storage.local.get("savedGrids");
@@ -79,8 +85,9 @@ sudoku = {
 	}, // End of load_grid
 	clear_grid: function(givens) {
 		if (sudoku.loadedGrids.hasOwnProperty(givens)) {
-			delete sudoku.loadedGrids(givens);
-			sudoku.save_grids();
+			delete sudoku.loadedGrids[givens];
+			let saved = sudoku.save_grids();
+			return saved;
 		}
 	}, // End of clear_grid
 	countObjs : function (obj) {

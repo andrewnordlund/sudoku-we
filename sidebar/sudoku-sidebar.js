@@ -71,8 +71,13 @@ sudokuSB = {
 			}
 		}
 	}, // End of populateUnfinishedList
-
+	listener : function (data, sender) {
+		console.log ("got a message: " + data.msg);
+		if (data.msg == "reload") sudoku.load_grids(sudokuSB.populateUnfinishedList);
+	}, // End of listener
 }
+
+browser.runtime.onMessage.addListener(sudokuSB.listener)
 
 sudokuSB.init();
 

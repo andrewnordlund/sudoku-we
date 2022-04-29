@@ -16,7 +16,6 @@ sudokuCS = {
 	}, // End of init
 	key_pressed : function (ev) {
 		document.getElementById("pressed_key").value = ""+ev.keyCode;
-		console.log ("pressed " + ev.keyCode);
 		gridder.key(ev.keyCode);
 	}, // End of key_pressed
 	handleRightMouse : function (e) {
@@ -24,7 +23,6 @@ sudokuCS = {
 	}, // End of handleRightMouse
 	listener : function (message, sender, sendMessage) {
 		if (message.msg == "updateOptions") {
-			console.log ("Updating options in CS");
 			sudokuCS.dbug = message["options"]["dbug"];
 			sudoku.options = message["options"];
 			gridder.loadprefs();
