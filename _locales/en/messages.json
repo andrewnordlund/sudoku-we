@@ -11,6 +11,10 @@
 		"message": "A SUDOKU Puzzle was detected on the page",
 		"description": "When the extension is run on another webpage with a sudoku puzzle."
 	},
+	"unfinishedGames" : {
+		"message" : "Unfinished Games",
+		"description" : "Heading for unfinished games section in sidebar."
+	},
 	"unrated": {
 		"message": "Not Rated",
 		"description": "No difficulty rating."
@@ -31,7 +35,7 @@
 		"message": "Unsolvable",
 		"description": "Unsolvable puzzle."
 	},
-	"mark": {
+	"markLabel": {
 		"message": "Mark",
 		"description": "Set a mark so if you make a mistake later, you can always come back here."
 	},

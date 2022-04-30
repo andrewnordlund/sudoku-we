@@ -319,7 +319,7 @@ gridder = {
 				r = stack.insertRow(0);
 				c = r.insertCell(0);
 				c.id = "mark_" + i;
-				c.innerHTML = gridder.strings.getFormattedString("mark.label", [""+(i+1)], 1)
+				c.innerHTML = browser.i18n.getMessage("markLabel") + " " + (i+1);
 				c.addEventListener("click", gridder.pop_mark, false);
 			}
 			gridder.repaint();
@@ -381,13 +381,31 @@ gridder = {
 		gridder.doc.getElementById('s8').addEventListener("click", function() {gridder.set_num(8);}, false);
 		gridder.doc.getElementById('s9').addEventListener("click", function() {gridder.set_num(9);}, false);
 
-		gridder.doc.getElementById('solve').addEventListener("click", function() {gridder.solve(1);}, false);
+		let solve = gridder.doc.getElementById('solve');
+		solve.addEventListener("click", function() {gridder.solve(1);}, false);
+		solve.innerHTML = browser.18n.getMessage("solve");
 
-		gridder.doc.getElementById('push').addEventListener("click", function() {gridder.push();}, false);
-		gridder.doc.getElementById('gen').addEventListener("click", function() {gridder.generate();}, false);
-		gridder.doc.getElementById('restart').addEventListener("click", function() {gridder.restart();}, false);
+		let push = gridder.doc.getElementById('push');
+		push.addEventListener("click", function() {gridder.push();}, false);
+		push.innerHTML = browser.18n.getMessage("mark");
 
-		gridder.doc.getElementById('completed').addEventListener("click", function() {gridder.generate();}, false);
+		let gen = gridder.doc.getElementById('gen');
+		gen.addEventListener("click", function() {gridder.generate();}, false);
+		gen.innerHTML = browser.18n.getMessage("gen");
+
+		let restart = gridder.doc.getElementById('restart');
+		restart.addEventListener("click", function() {gridder.restart();}, false);
+		restart.innerHTML = browser.18n.getMessage("restart");
+
+		let loctimer = gridder.doc.getElementById("loc_timer");
+		loctimer.innerHTML = browser.18n.getMessage("time");
+
+		let locdifficulty = gridder.doc.getElementById("loc_difficulty");
+		locdifficulty.innerHTML = browser.18n.getMessage("difficulty");
+
+		let completed = gridder.doc.getElementById('completed');
+		completed.addEventListener("click", function() {gridder.generate();}, false);
+		completed.innerHTML = browser.18n.getMessage("completed");
 		if (gridder.doc!=document) {	// Uhhhhh, should this ever happen?
 			gridder.doc.getElementById('pressed_key').addEventListener("DOMAttrModified", 
 				function(ev) {
@@ -785,11 +803,9 @@ gridder = {
 			return ;
 		}
 		if (dbug) console.log("Smartsave Gathering.");
-		console.log ("smart_save: We have" + sudoku.countObjs(sudoku.loadedGrids) + " grids previously saved.");
 
 		var data = [ gridder.cache, gridder.hints, gridder.ticks, gridder.user_stack, gridder.difficulty ];
 		sudoku.add_grid(out, data).then(gridder.notify_sidebar, sudoku.errorFun);
-		//gridder.notify_sidebar();	// I don't tink we need to do this.  Okay, what this does is if the sidebar is still open, it updates the contents.  Maybe we need to do this, but let's take care of the saving first.
 	}, // End of smart_save
 	push: function() {
 		var r, c, i;
@@ -810,8 +826,7 @@ gridder = {
 		r = gridder.doc.getElementById("stack").insertRow(0);
 		c = r.insertCell(0);
 		c.id = "mark_" + i;
-		//c.innerHTML = gridder.strings.getFormattedString("mark.label", [""+(i+1)], 1)	// This should be replaced with a new localization thingy.
-		c.innerHTML = "Mark " + (i+1); 
+		c.innerHTML = browser.i18n.getMessage("markLabel") + " " +(i+1);	// This should be replaced with a new localization thingy.
 
 		c.addEventListener("click", gridder.pop_mark, false);
 	}, // End of push

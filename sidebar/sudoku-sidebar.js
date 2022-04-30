@@ -8,6 +8,7 @@ sudokuSB = {
 		"newPuzzleBtn" : null,
 		"optionsBtn" : null,
 		"listHolder" : null,
+		"unfinishedGamesH2" : null
 	},
 	
 	init : function () {
@@ -16,13 +17,19 @@ sudokuSB = {
 			if (control == "newPuzzleBtn") {
 				sudokuSB.controls[control].addEventListener("click", sudokuSB.newPuzzle, false);
 				sudokuSB.controls[control].innerHTML = browser.i18n.getMessage("new");
-			}
-			if (control == "optionsBtn") {
+			} else if (control == "optionsBtn") {
 				sudokuSB.controls[control].addEventListener("click", sudokuSB.openOptionsPage, false);
 				sudokuSB.controls[control].innerHTML = browser.i18n.getMessage("sudokuOptions");
-			}
-			if (control == "listHolder") {
+			} else if (control == "listHolder") {
 				sudokuSB.controls[control].innerHTML = "<p> - </p>";
+			} else {
+				let con = control.match(/(.*)(H\d|Lbl)/);
+				if (con) {
+					console.log ("from " + control + " about to get the i18n for " + con[1] + ".");
+					console.log ("Gonna update for " +control + ": " + sudokuSB.controls[control] + ".");
+					sudokuSB.controls[control].innerHTML = browser.i18n.getMessage(con[1]);
+				}
+
 			}
 
 		}

@@ -11,13 +11,29 @@ sudokuOpts = {
 		"highlightWrongNumbersChk" : null,
 		"devSection" : null,
 		"dbugChk" : null,
+		"sudokuOptionsH1" : null,
+		"mainH2" : null,
+		"displayH2" : null,
+		"allowhardLbl" : null,
+		"hinttipsLbl" : null,
+		"hlcrossLbl" : null,
+		"hlerrorsLbl" : null
 	},
 	downkeys : {"d" : null},
 	init : function () {
+		document.title = browser.i18n.getMessage("sudokuOptions");
 		for (var control in sudokuOpts.controls) {
 			sudokuOpts.controls[control] = document.getElementById(control);
-			if (control.match(/Chk/)) sudokuOpts.controls[control].addEventListener("click", sudokuOpts.saveOptions, false);
-			// crud.  Should prolly do some 118n here.  But I'm soooo lazy
+			if (control.match(/Chk/)) {
+				sudokuOpts.controls[control].addEventListener("click", sudokuOpts.saveOptions, false);
+			} else {
+				let con = control.match(/(.*)(H\d|Lbl)/);
+				if (con) {
+					console.log ("from " + control + " about to get the i18n for " + con[1] + ".");
+					console.log ("Gonna update for " +control + ": " + sudokuOpts.controls[control] + ".");
+					sudokuOpts.controls[control].innerHTML = browser.i18n.getMessage(con[1]);
+				}
+			}
 		}
 		sudoku.addToPostLoad([sudokuOpts.fillValues]);
 

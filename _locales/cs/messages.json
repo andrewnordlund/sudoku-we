@@ -11,6 +11,10 @@
 		"message": "SUDOKU bylo nalezeno na této stránce",
 		"description": "When the extension is run on another webpage with a sudoku puzzle."
 	},
+	"unfinishedGames" : {
+		"message" : "Nedokončené hry",
+		"description" : "Heading for unfinished games section in sidebar."
+	},
 	"unrated": {
 		"message": "Nehodnocené",
 		"description": "No difficulty rating."
@@ -31,7 +35,7 @@
 		"message": "Neřešitelné",
 		"description": "Unsolvable puzzle."
 	},
-	"mark": {
+	"markLabel": {
 		"message": "Značka",
 		"description": "Set a mark so if you make a mistake later, you can always come back here."
 	},
