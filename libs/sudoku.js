@@ -101,6 +101,30 @@ sudoku = {
 		}
 		return returnValue;
 	}, // End of countObjs
+	getDifficultyString : function (dif) {
+		var temp = "";
+		
+		if (dif>0 && dif<=30) {
+			temp = browser.i18n.getMessage("easy");
+		} else if (dif>30 && dif<=50) {
+			temp = browser.i18n.getMessage("medium");
+		} else if (dif>50) {
+			temp = browser.i18n.getMessage("hard");
+		} else {
+			temp = browser.i18n.getMessage("unsolvable");
+		}
+		return temp;
+		
+	}, // End of getDifficultyString
+	getTimeString : function (ticks) {
+		let rv = "";
+		if (ticks%60<10) {
+			rv = "" + Math.floor(ticks/60) + ":0" + (ticks%60);
+		} else {
+			rv = "" + Math.floor(ticks/60) + ":" + (ticks%60);
+		}
+		return rv;
+	}, // End of getTimeString
 }
 
 // Taken from griddb.js

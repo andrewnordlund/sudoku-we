@@ -69,12 +69,16 @@ sudokuSB = {
 		//if (sudokuSB.dbug) 
 		if (sudoku.countObjs(sudoku.loadedGrids) > 0) {
 			listHolder.innerHTML = "";
-			let ol = document.createElement("ol");
-			listHolder.appendChild(ol);
+			let ul = document.createElement("ul");
+			listHolder.appendChild(ul);
+			ul.setAttribute("class", "puzzleList");
+
+			let timeLbl = browser.i18n.getMessage("time");
+			let difficultyLbl = browser.i18n.getMessage("difficulty");
 
 			for (let grid in sudoku.loadedGrids) {
 				let li = document.createElement("li");
-				ol.appendChild(li);
+				ul.appendChild(li);
 
 				let a = document.createElement("a");
 				a.textContent = sudokuSB.format_date(sudoku.loadedGrids[grid]["date"], browser.i18n.getMessage("dateformat"));
@@ -85,11 +89,67 @@ sudokuSB = {
 					sudokuSB.openPage("?p=" + grid);
 					}, false);
 				li.appendChild(a);
+
+				let gridDiv = document.createElement("div");
+				gridDiv.classList.add("hidden");
+				let dl = document.createElement("dl");
+				gridDiv.appendChild(dl);
+				let timeDT = document.createElement("dt");
+				timeDT.innerHTML = timeLbl;
+				dl.appendChild(timeDT);
+				let timeDD = document.createElement("dd");
+				timeDD.innerHTML = sudoku.getTimeString(sudoku.loadedGrids[grid]["data"][2]); //This should be converted to tume
+				dl.appendChild(timeDD);
+
+				let difficultyDT = document.createElement("dt");
+				difficultyDT.innerHTML = difficultyLbl;
+				dl.appendChild(difficultyDT);
+				let difficultyDD = document.createElement("dd");
+				difficultyDD.innerHTML = sudoku.getDifficultyString(sudoku.loadedGrids[grid]["data"][4]);
+				dl.appendChild(difficultyDD);
+
+				let table = document.createElement("table");
+				table.classList.add("hintTable");
+				for (let r = 0; r < 9; r++) {
+					let tr = document.createElement("tr");
+					for (let c = 0; c<9; c++) {
+						let td = document.createElement("td");
+						let nm = sudoku.loadedGrids[grid]["data"][0][r][c];
+						if (nm != 0) td.innerHTML = Math.abs(nm);
+						if (nm < 0) td.classList.add("givens");
+						if (r == 2 || r == 5) td.classList.add("hlbot");
+						if (c == 2 || c == 5) td.classList.add("hlrt");
+						tr.appendChild(td);
+					}
+					table.appendChild(tr);
+				}
+				gridDiv.appendChild(table);
+				li.appendChild(gridDiv);
+				a.addEventListener("mouseover", sudokuSB.showGrid, false);
+				a.addEventListener("mouseout", sudokuSB.hideGrid, false);
+				gridDiv.addEventListener("mouseover", function (ev) {
+						ev.currentTarget.classList.remove("hidden");
+						ev.currentTarget.classList.add("gridDetesShow");
+					}, false);
+				gridDiv.addEventListener("mouseout", function (ev) {
+						ev.currentTarget.classList.remove("gridDetesShow");
+						ev.currentTarget.classList.add("hidden");
+					}, false);
 			}
 		} else {
 			if (sudokuSB.dbug) console.log ("populateUnfinishedList::Nothing to list.");
 		}
 	}, // End of populateUnfinishedList
+	showGrid : function (ev) {
+		let gridDiv = ev.currentTarget.nextSibling;
+		gridDiv.classList.remove("hidden");
+		gridDiv.classList.add("gridDetesShow");
+	}, // End of showGid
+	hideGrid : function (ev) {
+		let gridDiv = ev.currentTarget.nextSibling;
+		gridDiv.classList.remove("gridDetesShow");
+		gridDiv.classList.add("hidden");
+	}, // End of showGid
 	listener : function (data, sender) {
 		if (data.msg == "reload") {
 			sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);

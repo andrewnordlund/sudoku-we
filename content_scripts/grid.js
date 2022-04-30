@@ -346,19 +346,8 @@ gridder = {
 			}
 		}
 		if (dbug) console.log("gridder::gridder.difficulty:" + gridder.difficulty);
-		var temp = "";	// This is where you need locale stuff
-		
-		if (gridder.difficulty>0 && gridder.difficulty<=30) {
-			temp = browser.i18n.getMessage("easy");
-		} else if (gridder.difficulty>30 && gridder.difficulty<=50) {
-			temp = browser.i18n.getMessage("medium");
-		} else if (gridder.difficulty>50) {
-			temp = browser.i18n.getMessage("hard");
-		} else {
-			temp = browser.i18n.getMessage("unsolvable");
-		}
-		
-		gridder.doc.getElementById("info_dif").innerHTML = temp;
+				
+		gridder.doc.getElementById("info_dif").innerHTML = sudoku.getDifficultyString(gridder.difficulty);
 
 	}, // End of start_grid
 	init_ui: function() {
@@ -383,29 +372,29 @@ gridder = {
 
 		let solve = gridder.doc.getElementById('solve');
 		solve.addEventListener("click", function() {gridder.solve(1);}, false);
-		solve.innerHTML = browser.18n.getMessage("solve");
+		solve.innerHTML = browser.i18n.getMessage("solve");
 
 		let push = gridder.doc.getElementById('push');
 		push.addEventListener("click", function() {gridder.push();}, false);
-		push.innerHTML = browser.18n.getMessage("mark");
+		push.innerHTML = browser.i18n.getMessage("mark");
 
 		let gen = gridder.doc.getElementById('gen');
 		gen.addEventListener("click", function() {gridder.generate();}, false);
-		gen.innerHTML = browser.18n.getMessage("gen");
+		gen.innerHTML = browser.i18n.getMessage("gen");
 
 		let restart = gridder.doc.getElementById('restart');
 		restart.addEventListener("click", function() {gridder.restart();}, false);
-		restart.innerHTML = browser.18n.getMessage("restart");
+		restart.innerHTML = browser.i18n.getMessage("restart");
 
 		let loctimer = gridder.doc.getElementById("loc_timer");
-		loctimer.innerHTML = browser.18n.getMessage("time");
+		loctimer.innerHTML = browser.i18n.getMessage("time");
 
 		let locdifficulty = gridder.doc.getElementById("loc_difficulty");
-		locdifficulty.innerHTML = browser.18n.getMessage("difficulty");
+		locdifficulty.innerHTML = browser.i18n.getMessage("difficulty");
 
 		let completed = gridder.doc.getElementById('completed');
 		completed.addEventListener("click", function() {gridder.generate();}, false);
-		completed.innerHTML = browser.18n.getMessage("completed");
+		completed.innerHTML = browser.i18n.getMessage("completed");
 		if (gridder.doc!=document) {	// Uhhhhh, should this ever happen?
 			gridder.doc.getElementById('pressed_key').addEventListener("DOMAttrModified", 
 				function(ev) {
@@ -484,11 +473,7 @@ gridder = {
 		if (gridder.timer_on) {
 			gridder.ticks++;
 			var el = gridder.doc.getElementById("timer");
-			if (gridder.ticks%60<10) {
-				el.innerHTML = "" + Math.floor(gridder.ticks/60) + ":0" + (gridder.ticks%60);
-			} else {
-				el.innerHTML = "" + Math.floor(gridder.ticks/60) + ":" + (gridder.ticks%60);
-			}
+			el.innerHTML = sudoku.getTimeString(gridder.ticks);
 		}
 	}, // End of watch
 	set_hard: function(r, c, val) {

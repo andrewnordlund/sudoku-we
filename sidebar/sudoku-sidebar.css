@@ -31,3 +31,72 @@ footer div button {
 	margin: 0.2em auto;
 	display: block;
 }
+.puzzleList {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-position: inside;
+}
+.puzzleList li {
+	padding-left: 0;
+	margin-left: 0;
+	padding-bottom: 0.5em;
+	list-style-image: url("/skin/main-small.png");
+}
+.hidden {
+	display: none;
+}
+.gridDetesShow {
+	display: block;
+	position: absolute;
+	background-color: #F0F0F0;
+	width: 80%;
+	padding-bottom: 1em;
+}
+.givens {
+	color: blue;
+}
+dl {
+	width: 100%;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
+dt {
+	float: left;
+	width: 40%;
+	padding: 0;
+	margin: 0;
+	font-weight: 700;
+}
+dd {
+	float: left;
+	width: 60%;
+	padding: 0;
+	margin: 0
+}
+.hintTable {
+	margin-top: 0.5em;
+	border: solid blue;
+	border-width-left: 1px;
+	border-width-right: 2px;
+	border-width-top: 1px;
+	border-width-bottom: 2px;
+	width: 90%;
+        border-collapse: collapse;
+}
+.hintTable td {
+	border: none; /*solid 1px #606060;*/
+	width: 12%;
+	margin:0;
+	padding: 0;
+}
+td.hlrt {
+	border-right: solid 1px blue;
+}
+.hltop {
+	border-top: solid 1px blue;
+}
+td.hlbot {
+	border-bottom: solid 1px blue;
+}
+
