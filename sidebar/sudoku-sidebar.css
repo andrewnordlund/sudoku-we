@@ -85,7 +85,7 @@ dd {
         border-collapse: collapse;
 }
 .hintTable td {
-	border: none; /*solid 1px #606060;*/
+	border: none;
 	width: 12%;
 	margin:0;
 	padding: 0;

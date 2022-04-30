@@ -29,8 +29,6 @@ sudokuOpts = {
 			} else {
 				let con = control.match(/(.*)(H\d|Lbl)/);
 				if (con) {
-					console.log ("from " + control + " about to get the i18n for " + con[1] + ".");
-					console.log ("Gonna update for " +control + ": " + sudokuOpts.controls[control] + ".");
 					sudokuOpts.controls[control].innerHTML = browser.i18n.getMessage(con[1]);
 				}
 			}
@@ -67,7 +65,7 @@ sudokuOpts = {
 
 		browser.storage.local.set({"options": sudoku.options}).then(function () { if (sudoku.options["dbug"]) console.log ("Options Saved!");}, sudoku.errorFun);
 
-		console.log ("Gonna try to send new options to the " + sudoku.thePage + " pages.");
+		if (sudokuOpts.dbug) console.log ("Gonna try to send new options to the " + sudoku.thePage + " pages.");
 		browser.tabs.query({url:"moz-extension://*" + sudoku.thePage + "*"}).then(function (tabs) {
 				    //  moz-extension://7b9475d5-3135-47bb-8d8f-ca27fb4f1745/sidebar/c
 			if (tabs.length > 0) {
@@ -84,7 +82,6 @@ sudokuOpts = {
 
 	checkKeys : function (e) {
 		//if (sudokuOpts.dbug) 
-			console.log ("Key down: " + e.keyCode + ".");
 		if (e.keyCode == 68) {
 			document.removeEventListener("keydown", sudokuOpts.checkKeys);
 			document.addEventListener("keyup", sudokuOpts.checkUpKey, false);
@@ -111,7 +108,6 @@ sudokuOpts = {
 		}
 	}, // End of checkUpKey
 	showDevSection : function () {
-		console.log ("Revealing developers section.");
 		sudokuOpts.controls["devSection"].style.display = "block";
 	}, // End of showDevSection
 

@@ -148,8 +148,8 @@ var gridsb = {
 		this.browser.openUILink(uri, ev, false, true);
 	}, // End of random
 	tip_showing: function(ev) {
-		var fvr = this.saved.getIndexOfFirstVisibleRow();
-		var lvr = fvr + this.saved.getNumberOfVisibleRows() + 1;
+		var fvr = this.saved.getIndexOfFirstVisibleRow();		// first row?
+		var lvr = fvr + this.saved.getNumberOfVisibleRows() + 1;	// last row?
 		var found = null;
 		for (var i = fvr;i<lvr;i++) {
 			var r = this.saved.getItemAtIndex(i).getBoundingClientRect();
@@ -158,7 +158,7 @@ var gridsb = {
 				break;
 			}
 		}
-		if (null==found) {
+		if (found == null) {
 			return false;
 		}
 		if (found.id.substring(0, 5) != "item_") {
@@ -174,7 +174,7 @@ var gridsb = {
 				var el = document.getElementById("g" + (r*9+c));
 				var v = grid[0][r][c];
 				el.className = "";
-				if (0==v) {
+				if (v == 0) {
 					el.value = '';
 				} else if (v<0) {
 					el.value = -v;

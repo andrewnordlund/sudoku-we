@@ -25,8 +25,6 @@ sudokuSB = {
 			} else {
 				let con = control.match(/(.*)(H\d|Lbl)/);
 				if (con) {
-					console.log ("from " + control + " about to get the i18n for " + con[1] + ".");
-					console.log ("Gonna update for " +control + ": " + sudokuSB.controls[control] + ".");
 					sudokuSB.controls[control].innerHTML = browser.i18n.getMessage(con[1]);
 				}
 

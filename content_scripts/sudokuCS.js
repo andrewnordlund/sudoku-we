@@ -3,7 +3,7 @@ if (typeof (sudokuCS) == "undefined") {
 }
 
 sudokuCS = {
-	dbug : true,
+	dbug : sudoku.dbug,
 	init : function () {
 		let body = null;
 		body = document.querySelector("body");
@@ -32,7 +32,6 @@ sudokuCS = {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	console.log ("Window is now loaded.");
 	var supplied_grid_type = "random";
 	var supplied_grid = 1;
 
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	gridder.doc = document;
 	//gridder.init_ff3ext();
-	console.log ("About to call gridder.init();");
 	gridder.init();	// Sets everything to 0, or square 1, as it were; and adds event handlers.
 	if (supplied_grid_type == "data") {
 		sudoku.load_grids().then(function () {
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 }, false);
 window.addEventListener("beforeunload", function () {
-	console.log ("Unloading and then saving....");
 	gridder.smart_save();
 }, false);
 

@@ -1,10 +1,8 @@
 if (typeof (sudoku) == "undefined") {
 	let sudoku = {};
 }
-console.log ("Loading sudoku.js");
-
 sudoku = {
-	dbug : true,
+	dbug : false,
 	thePage : "/content_scripts/sudoku.html",
 	options : {
 		"allowHard" : false,
@@ -60,9 +58,7 @@ sudoku = {
 	}, // End of errorFun
 	add_grid : function(givens, data) {
 		let dt = new Date();
-		console.log ("add_grid: We have" + sudoku.countObjs(sudoku.loadedGrids) + " grids previously saved.");
 		sudoku.loadedGrids[givens] = {"givens" : givens, "date" : dt, "data" : data};
-		console.log ("add_grid: We now have" + sudoku.countObjs(sudoku.loadedGrids) + " grids being saved.");
 		return sudoku.save_grids();
 	}, // End of add_grid
 	save_grids () {

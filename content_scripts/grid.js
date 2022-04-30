@@ -1,5 +1,4 @@
-console.log ("Loading grid.js");
-dbug = true;
+dbug = false;
 function get_shuffled_range(from, to) {
 	/**
 	 * Creates an array with items <from, to) and shuffles it.
@@ -172,7 +171,6 @@ gridder = {
 		//gridder.check_integrity();
 	}, // End of observe
 	checkStorageChange : function (changes, area) {
-		console.log("Change in storage area: " + area);
 
 		let changedItems = Object.keys(changes);
 
@@ -271,7 +269,7 @@ gridder = {
 		gridder.timer_on = 0;
 		gridder.timer = setInterval(gridder.watch, 1000);
 
-	      if (dbug) console.log ("gridder::Finished Initting!  Now gonna init_ui to add event handlers.");
+		if (dbug) console.log ("gridder::Finished Initting!  Now gonna init_ui to add event handlers.");
 		gridder.init_ui();
 		//sudoku.observe(gridder.checkStorageChange);
 	}, // End of init
@@ -747,7 +745,7 @@ gridder = {
 	}, // End of finished
 	notify_sidebar: function() {
 		// Instead of the old-school way below, we'd better use the new-school way of calling the sidebar...
-		console.log ("Gonna try to notify the sidebar now.");
+		//console.log ("Gonna try to notify the sidebar now.");
 		browser.runtime.sendMessage({"msg":"reload"});
 		/*
 		var browser = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
@@ -891,7 +889,6 @@ gridder = {
 	generate: function() {
 		var s = new SOLVER();
 		var difficulty = 10;
-		console.log ("AllowHard: " + sudoku.options["allowHard"]);
 		if (sudoku.options["allowHard"] === true) {
 			difficulty = 70;
 		}
@@ -1600,4 +1597,3 @@ SOLVER.prototype = {
 	}, // End of dump
 	__sentinel: 0
 }; // End of SOLVER.prototype
-console.log ("Loaded grid.js");
