@@ -149,6 +149,7 @@ sudokuSB = {
 		gridDiv.classList.add("hidden");
 	}, // End of showGid
 	listener : function (data, sender) {
+		console.log ("sudokuSB::listener::Got message: " + data.msg + ".");
 		if (data.msg == "reload") {
 			sudoku.load_grids().then(sudokuSB.populateUnfinishedList, sudoku.errorFun);
 		} else if (data.msg == "saveAndReload") {

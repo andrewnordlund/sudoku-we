@@ -87,7 +87,13 @@ sudoku = {
 	clear_grid: function(givens) {
 		if (sudoku.loadedGrids.hasOwnProperty(givens)) {
 			delete sudoku.loadedGrids[givens];	// Ahhh. this function gets called a lot, but this _part_ should only be done when you've finished a puzzle!....except this is here in the original function, okay so leave it....it also happens with an unsolvable puzzle
+			if (sudoku.dbug) console.log ("sudoku::clear_grids::Removing grid " + givens + " from storage.");
 			let saved = sudoku.save_grids();
+			return saved;
+		} else {
+			if (sudoku.dbug) console.log ("sudoku::clear_grids::Not removing grid " + givens + " from storage because it wasn't in loaded grids.");
+			return ;
+
 		}
 	}, // End of clear_grid
 	countObjs : function (obj) {

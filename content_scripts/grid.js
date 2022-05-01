@@ -741,11 +741,12 @@ gridder = {
 	}, // End of check_integrity
 	finished: function() {
 		gridder.doc.getElementById("completed").style.visibility = "visible";
+		console.log ("Congrats!  You just finished th game!  Now gonna clear the grid, then notify the sidebar.");
 		sudoku.clear_grid(gridder.get_givens()).then(gridder.notify_sidebar);
 	}, // End of finished
 	notify_sidebar: function() {
 		// Instead of the old-school way below, we'd better use the new-school way of calling the sidebar...
-		//console.log ("Gonna try to notify the sidebar now.");
+		console.log ("Gonna try to notify the sidebar now.");
 		browser.runtime.sendMessage({"msg":"reload"});
 		/*
 		var browser = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
