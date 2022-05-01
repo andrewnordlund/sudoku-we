@@ -25,8 +25,10 @@ sudokuCS = {
 		if (message.msg == "updateOptions") {
 			sudokuCS.dbug = message["options"]["dbug"];
 			sudoku.options = message["options"];
+			console.log ("sudocuCS::listener::Set sudoku.options.dbug to " + sudoku.options.dbug + ".");
 			gridder.loadprefs();
 			gridder.check_integrity();
+			dbug = sudokuCS.dbug;
 		}
 	}, // End of listener
 }

@@ -22,15 +22,7 @@
 		"cookies"
 	],
 	"background": {
-		"scripts": ["sudoku-bg.js"]
-	},
-	"browser_action": {
-		"browser_style": false,
-		"default_icon": {
-			"19": "skin/main-small.png",
-			"38": "skin/main-mid.png"
-		},
-		"default_title": "Sudoku"
+		"scripts": ["/libs/sudoku.js", "sudoku-bg.js"]
 	},
 	"sidebar_action": {
 		"default_title": "Sudoku",
@@ -38,6 +30,20 @@
 		"default_icon": {
 			"19": "skin/main-small.png",
 			"38": "skin/main-mid.png"
+		}
+	},
+	"browser_action": {
+		"default_icon": {
+			"19": "skin/main-small.png",
+			"38": "skin/main-mid.png"
+		},
+		"default_title": "Sudoku"
+	},
+	"commands": {
+		"_execute_sidebar_action": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+S"
+			}
 		}
 	},
 	"options_ui" : {

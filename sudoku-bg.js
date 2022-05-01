@@ -4,9 +4,10 @@ if (typeof (sudokuBG) == "undefined") {
 
 sudokuBG = {
 	urlRE : null,
-	dbug : true, //sudoku.dbug,
+	dbug : sudoku.dbug,
 	thePage : "content_scripts/sudoku.html",
 	init : function () {
+		console.log ("Running sudoku....");
 		//sudokuBG.dbug = true; //nordburg.getBoolPref("extensions.sudokuBG.", "dbug");
 		//sudokuBG.observe(); //run();	// Let's see if we can do this more manually.
 	}, // End of init
@@ -25,20 +26,7 @@ sudokuBG = {
 					browser.tabs.update(tabs[0].id, {active:true});
 				}, sudokuBG.errorFun);
 			}
-		}, sudokuBG.errorFun);
+		}, sudoku.errorFun);
 	}, // End of run
-	errorFun : function () {
-		console.log ("there was an error");
-	}, // End of errorFun
-	observe: function() {
-			 // Oh frig; this should go in a background script!
-		browser.storage.onChanged.addListener(/*callback*/  function (changes, area) {
-			console.log ("storage was updated");
-		});
-	}, // End of observe
 }
-
-browser.browserAction.onClicked.addListener(sudokuBG.init);
-
-if (sudokuBG.dbug) console.log ("sudokuBG.js loaded.");
-
+browser.browserAction.onClicked.addListener(sudokuBG.run);
