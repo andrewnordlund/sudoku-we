@@ -1,0 +1,56 @@
+{
+	"manifest_version": 2,
+	"name": "Sudoku",
+	"description": "__MSG_extensionDescription__",
+	"version": "0.0.1-a1",
+	"icons" : {
+		"48": "skin/main-mid.png",
+		"96": "skin/main-big.png"
+	},
+	"homepage_url" : "https://www.nordburg.ca/ext/home.php",
+	"applications": {
+		"gecko": {
+			"id": "nordSudoku@nordburg.ca",
+			"strict_min_version": "45.0",
+			"update_url" : "https://www.nordburg.ca/ext/updates.php?extid=nordSudoku"
+		}
+	},
+	"permissions": [
+		"<all_urls>",
+		"tabs",
+		"storage",
+		"cookies"
+	],
+	"background": {
+		"scripts": ["/libs/sudoku.js", "sudoku-bg.js"]
+	},
+	"sidebar_action": {
+		"default_title": "Sudoku",
+		"default_panel": "sidebar/sudoku-sidebar.html",
+		"default_icon": {
+			"19": "skin/main-small.png",
+			"38": "skin/main-mid.png"
+		}
+	},
+	"browser_action": {
+		"default_icon": {
+			"19": "skin/main-small.png",
+			"38": "skin/main-mid.png"
+		},
+		"default_title": "Sudoku"
+	},
+	"commands": {
+		"_execute_sidebar_action": {
+			"suggested_key": {
+				"default": "Ctrl+Alt+S"
+			}
+		}
+	},
+	"options_ui" : {
+		"page" : "options/sudoku-options.html",
+		"browser_style" : true
+	},
+
+	"web_accessible_resources" : ["content_scripts/*", "sidebar/*"],
+	"default_locale": "en"
+}
