@@ -4,7 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Sudoku</title>
-		<link rel="stylesheet" href="grid.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="sudoku.css" type="text/css" media="screen">
+		<!--<link rel="stylesheet" href="grid.css" type="text/css" media="screen">-->
 		<script src="/libs/sudoku.js"></script>
 		<!--
 <script type="text/javascript">
@@ -15,8 +16,11 @@ function key_pressed(ev) {
 -->
 	</head>
 	<body id="body"> <!-- oncontextmenu="return false;" onkeyup="key_pressed(event)"> -->
+		<header>
+			<h1>Sudoku</h1>
+		</header>
 		<main>
-			<div class="left">
+			<div id="gridHolder" class="left">
 				<table class="g hv" id="grid">
 					<tr>
 						<th class="c0 q00" id="00">
@@ -591,7 +595,14 @@ function key_pressed(ev) {
 					</tr>
 				</table>
 			</div> <!-- End of class=left -->
-			<div class="right">
+			<div id="infoHolder" class="right">
+				<dl>
+					<dt id="loc_timer">Timer:</dt>
+					<dd id="timer"></dd>
+					<dt id="loc_difficulty">Difficulty:</dt>
+					<dd id="info_dif"></dd>
+				</dl>
+				<!--
 				<table class="info">
 					<tr>
 						<td id="s.timer"><span id="loc_timer">Timer:</span></td>
@@ -605,8 +616,9 @@ function key_pressed(ev) {
 					</tr>
 				</table>
 				<table class="info" id="stack"></table>
+			-->
 			</div> <!-- End of class=right -->
-			<div class="menu">
+			<div id="menuHolder" class="menu">
 				<table class="numbers">
 					<tr><td id="solve"><span id="loc_solve">SOLVE</span></td></tr>
 					<tr><td id="push"><span id="loc_mark">MARK</span></td></tr>
@@ -616,43 +628,10 @@ function key_pressed(ev) {
 			</div> <!-- End of class=menu -->
 			<input id="pressed_key" type="hidden" value="">
 		</main>
-		<!-- <script src="tools.js"></script>  Pfffft.  This apparently just gets the console? -->
+		<footer>
+			<p>This is the footer.</p>
+		</footer>
 		<script src="grid.js"></script> 
-		<!--<script type="application/javascript">
-function key_pressed(ev) {
-	gridder.key(ev.keyCode);
-};
-document.addEventListener("DOMContentLoaded", function () {
-	console.log ("Window is now loaded.");
-	var supplied_grid_type = "random";
-	var supplied_grid = 1;
-
-	var p = window.location.href.indexOf("sudoku.html?p=");
-	if (p!=-1) {
-		supplied_grid_type = "data";
-		supplied_grid = window.location.href.substr(p+14);
-	} else {
-		var p = window.location.href.indexOf("sudoku.html?r=");
-		if (p!=-1) {
-			supplied_grid = 1*window.location.href.substr(p+14);
-		}
-	}
-
-	gridder.doc = document;
-	gridder.init_ff3ext();
-	console.log ("About to call gridder.init();");
-	gridder.init();
-	if (supplied_grid_type == "data") {
-		gridder.start_grid(supplied_grid);
-	} else {
-		gridder.generate(supplied_grid);
-	}
-}, false);
-window.onunload = function() {
-	gridder.smart_save();
-};
-		</script>
-		-->
 		<script src="sudokuCS.js"></script>
 	</body>
 </html>
